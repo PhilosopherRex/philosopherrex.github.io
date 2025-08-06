@@ -1,0 +1,2695 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>StorPunk - Decentralized Storage with a Cyberpunk Edge</title>
+    </head>
+    <body>
+        <div class="code-rain" id="codeRain"></div>
+
+        <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav id="mainNav">
+            <ul>
+                <li>
+                    <a onclick="showSection('introduction')">Introduction</a>
+                </li>
+                <li><a onclick="showSection('dao')">DAO</a></li>
+                <li><a onclick="showSection('roadmap')">Roadmap</a></li>
+                <li><a onclick="showSection('faq')">FAQ</a></li>
+                <li><a onclick="showSection('contacts')">Contacts</a></li>
+                <li><a onclick="showSection('whitepaper')">Whitepaper</a></li>
+            </ul>
+        </nav>
+
+        <main class="container"></main>
+    </body>
+</html>
+<style>
+/* General Structure */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    overflow-x: hidden;
+    padding-right: 250px;
+}
+
+.container {
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+/* Header Structure */
+header {
+    padding: 20px 0;
+    position: relative;
+    z-index: 500;
+    padding-right: 250px;
+    margin-right: -250px;
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Navigation Structure */
+nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.nav-toggle {
+    display: none;
+}
+
+nav ul {
+    list-style: none;
+    padding: 60px 0 0 0;
+    margin-top: 20px;
+}
+
+nav ul li {
+    margin-bottom: 15px;
+}
+
+nav ul li a {
+    font-size: 1.1rem;
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* Content Sections Structure */
+.content-section {
+    display: none;
+    padding: 20px 0;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.content-section.active {
+    display: block;
+}
+
+/* Headings Structure */
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin: 15px 0;
+}
+
+/* Text Elements Structure */
+p {
+    margin-bottom: 15px;
+}
+
+ul,
+ol {
+    margin-bottom: 15px;
+    padding-left: 20px;
+    list-style-position: inside;
+}
+
+/* Code Block Structure */
+.code-block {
+    padding: 15px;
+    margin: 15px 0;
+    border-left: 3px solid;
+    font-size: 0.85em;
+}
+
+/* Features Layout */
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.feature-card {
+    flex: 1 1 300px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.feature-card h3 {
+    margin-top: 0;
+}
+
+/* Roadmap Structure */
+.roadmap-item {
+    border-left: 2px solid;
+    padding-left: 20px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.roadmap-item::before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 2px solid;
+    border-radius: 50%;
+}
+
+.roadmap-item::after {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+/* FAQ Structure */
+.faq-item {
+    margin-bottom: 20px;
+    border-bottom: 1px dashed;
+    padding-bottom: 10px;
+}
+
+.faq-question {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+}
+
+.faq-question::after {
+    content: "+";
+    position: absolute;
+    right: 10px;
+    transition: transform 0.3s ease;
+    font-size: 1.5rem;
+}
+
+.faq-question.active::after {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    display: none;
+    padding: 10px;
+}
+
+.faq-answer.active {
+    display: block;
+}
+
+/* Contact Cards Layout */
+.contact-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.contact-card {
+    flex: 1 1 300px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.contact-title {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+}
+
+.contact-name {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    padding: 5px;
+    display: inline-block;
+}
+
+.contact-details {
+    margin: 15px 0;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.contact-info {
+    margin: 5px 0;
+}
+
+.protocol-id {
+    font-family: monospace;
+    padding: 8px;
+    border-radius: 3px;
+    word-break: break-all;
+}
+
+/* Footer Structure */
+footer {
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 50px;
+    border-top: 1px solid;
+    padding-right: 250px;
+    margin-right: -250px;
+}
+
+/* Special Effects */
+.code-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.4;
+}
+
+/* Utility Classes */
+.highlight {
+    font-weight: bold;
+}
+
+/* Button Structure */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid;
+    text-decoration: none;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.deploy-date {
+    margin-top: auto;
+    padding: 15px 10px;
+    font-size: 0.8rem;
+    text-align: center;
+    border-top: 1px solid var(--border-dark, #2a3247);
+    color: var(--text-secondary, #7badb3);
+    font-family: var(--font-secondary);
+}
+
+.current-time {
+    margin-top: 50%;
+    padding: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-family: var(--font-primary);
+    border-top: 1px solid var(--border-dark);
+    white-space: pre-line; /* allow line-break on the zero-width space */
+    word-break: break-word; /* graceful fallback */
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    body {
+        padding-right: 0;
+    }
+
+    nav {
+        width: 100%;
+        transform: translateX(100%);
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    header,
+    footer {
+        padding-right: 0;
+        margin-right: 0;
+    }
+
+    .feature-card {
+        flex: 1 1 100%;
+    }
+}
+/* CSS Variables for Easy Color Management */
+:root {
+    /* Primary Colors - Cool Cyberpunk Theme */
+    --primary-bg: #080818; /* Deep blue-black background */
+    --secondary-bg: #141929; /* Slightly lighter background */
+    --card-bg: #1a1f33; /* Card/panel background */
+    --border-dark: #2a3247; /* Dark border color */
+
+    /* Text Colors */
+    --text-primary: #c4d0c2; /* Light blue-gray for main text */
+    --text-accent: #00e4e4; /* Cyan accent (less intense than green) */
+    --text-highlight: #e4d162; /* Warm amber for highlights */
+    --text-secondary: #7badb3; /* Muted blue-gray for secondary text */
+
+    /* Interactive Elements */
+    --link-color: #4de3cc; /* Sky blue for links */
+    --link-hover: #6af6ed; /* Lighter blue on hover */
+    --button-bg: #1e293b; /* Dark slate for buttons */
+    --button-border: #38bdf8; /* Bright blue border */
+    --button-hover-bg: #334155; /* Lighter slate on hover */
+
+    /* Special Effects */
+    --glow-color: rgba(56, 189, 248, 0.3); /* Blue glow effect */
+    --shadow-color: rgba(0, 212, 255, 0.2); /* Cyan shadow */
+    --text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8); /* Black text shadow */
+
+    /* Fonts */
+    --font-primary: "Courier New", monospace;
+    --font-secondary: "Consolas", "Monaco", monospace;
+}
+
+/* Typography Base */
+body {
+    font-family: var(--font-primary);
+    background-color: var(--primary-bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    text-shadow: var(--text-shadow);
+}
+
+/* Text Color Classes */
+.logo {
+    color: var(--text-accent);
+    text-shadow: var(--text-shadow);
+}
+
+h2 {
+    color: var(--text-accent);
+    border-bottom-color: var(--button-border);
+    text-shadow: var(--text-shadow);
+}
+
+h3,
+.feature-card h3,
+.contact-title {
+    color: var(--text-highlight);
+    text-shadow: var(--text-shadow);
+}
+
+.highlight,
+.logo span {
+    color: var(--text-highlight);
+    text-shadow: var(--text-shadow);
+}
+
+p,
+ul,
+ol {
+    color: var(--text-primary);
+    text-shadow: var(--text-shadow);
+}
+
+/* Link Styling */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    text-shadow: var(--text-shadow);
+}
+
+a:hover {
+    color: var(--link-hover);
+    text-shadow: var(--text-shadow);
+}
+
+nav ul li a {
+    color: var(--link-color);
+    text-shadow: var(--text-shadow);
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: var(--text-highlight);
+    text-shadow: var(--text-shadow);
+}
+
+/* Background Colors */
+header {
+    background-color: rgba(10, 14, 26, 0.9);
+}
+
+nav {
+    background-color: var(--secondary-bg);
+    border-left-color: var(--border-dark);
+    box-shadow: -2px 0 10px var(--shadow-color);
+}
+
+.feature-card,
+.contact-card {
+    background-color: var(--card-bg);
+    box-shadow: 0 0 10px var(--glow-color);
+}
+
+.code-block {
+    background-color: var(--secondary-bg);
+    border-left-color: var(--text-accent);
+    color: var(--text-primary);
+    text-shadow: var(--text-shadow);
+}
+
+.faq-question {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    text-shadow: var(--text-shadow);
+}
+
+.faq-question::after {
+    color: var(--text-accent);
+    text-shadow: var(--text-shadow);
+}
+
+.contact-name {
+    color: var(--text-accent);
+    background-color: var(--button-bg);
+    text-shadow: var(--text-shadow);
+}
+
+.contact-details,
+.protocol-id {
+    background-color: var(--button-bg);
+    color: var(--text-primary);
+    text-shadow: var(--text-shadow);
+}
+
+footer {
+    background-color: rgba(10, 14, 26, 0.9);
+    color: var(--text-secondary);
+    border-top-color: var(--border-dark);
+}
+
+/* Button Styling */
+.btn {
+    background-color: var(--button-bg);
+    color: var(--text-accent);
+    border-color: var(--button-border);
+    font-family: var(--font-primary);
+    text-shadow: var(--text-shadow);
+}
+
+.btn:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--text-highlight);
+    border-color: var(--text-highlight);
+    text-shadow: var(--text-shadow);
+}
+
+/* Roadmap Colors */
+.roadmap-item {
+    border-left-color: var(--text-accent);
+}
+
+.roadmap-item::before {
+    background-color: var(--primary-bg);
+    border-color: var(--text-accent);
+}
+
+.roadmap-item::after {
+    background-color: var(--text-accent);
+}
+
+/* FAQ Item Border */
+.faq-item {
+    border-bottom-color: var(--border-dark);
+}
+
+/* Code Rain Effect */
+.code-rain {
+    background-color: rgba(10, 14, 26, 0.85);
+}
+</style>
+<body>
+<div class="code-rain" id="codeRain"></div>
+
+<button class="nav-toggle" id="navToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+
+<nav id="mainNav">
+    <ul>
+        <li><a onclick="showSection('introduction')">Intro</a></li>
+        <li><a onclick="showSection('dao')">DAO</a></li>
+        <li><a onclick="showSection('why-storpunk')">Why StorPunk</a></li>
+        <li><a onclick="showSection('roadmap')">Roadmap</a></li>
+        <li><a onclick="showSection('faq')">FAQ</a></li>
+        <li><a onclick="showSection('contacts')">Contacts</a></li>
+        <li><a onclick="showSection('whitepaper')">Whitepaper</a></li>
+    </ul>
+    <div id="current-time" class="current-time"></div>
+    <div class="deploy-date">Last updated:<br>2025-07-31 16:37:22</div>
+</nav>
+
+<header>
+    <div class="container">
+        <div class="logo">Stor<span>Punk</span></div>
+    </div>
+</header>
+
+<main class="container">
+<content>
+    <!-- Introduction Section -->
+    <section id="introduction" class="content-section active">
+        <h3>Notice</h3>
+        <p
+            style="
+                padding: 1em;
+                border: solid 2px red;
+                margin: 1em;
+                font-size: 1.1rem;
+                font-weight: bold;
+            "
+        >
+            1. This site as it stands is up for discussion - feel free to make
+            suggestions for improvements - there may be many errors - I am using
+            AI to facilitate development and it's prone to messing things up.
+            <br />
+            2. I am thinking that in addition to payment for services to those
+            who help develop the project we should also offer some amount of
+            native tokens to developers as a further incentive. To do this we
+            need to assign some value to each task in the roadmap, which then we
+            can estimate the tokens provided to incentivize the work.
+            <br />
+            3. Contact me via the Autonomi forum or via a tox protocol app - see
+            the contacts page for details.
+            <br />
+            --TylerAbeoJordan
+        </p>
+        <h2>Introduction</h2>
+        <p>
+            StorPunk is a decentralized storage network combining the
+            reliability of cloud storage with the ethos of cyberpunk. It is
+            designed to provide temporary, configurable data storage while
+            incentivizing node operators through a streamlined, market-driven
+            model. Funded by a sustainable 5-year DAO, StorPunk emphasizes
+            censorship resistance, making it ideal for an era of increasing
+            global content restrictions.
+        </p>
+
+        <div class="code-block">
+            >> Fork of the Autonomi Network for temporary data storage<br />
+            >> Native non-blockchain token with market-based incentives<br />
+            >> No permanent data, no network bloat<br />
+            >> Dual-network client for both StorPunk (temporary) and Autonomi
+            (permanent) data<br />
+            >> Censorship-resistant design for unrestricted access
+        </div>
+
+        <p>
+            While Autonomi Network focuses on permanent data storage, StorPunk
+            creates a complementary solution for temporary, configurable data
+            needs. This fork is not an attempt to replace Autonomi—it's meant to
+            create a new option for the temporary data market, which is larger
+            and well-established. Our dual-network client allows seamless access
+            to both networks, providing free, unified management of temporary
+            and permanent data from a single interface.
+        </p>
+
+        <p>
+            Our focus on temporary data also addresses concerns about potential
+            cascade collapse that can affect networks with permanent data
+            storage under certain potential conditions. When using StorPunk,
+            clients set an expiration date for their data, and nodes factor this
+            into their pricing. Once data reaches its expiration date, it's
+            simply discarded and so the network cannot fill with old data that
+            is no longer desired.
+        </p>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3>Temporary Data Model</h3>
+                <p>
+                    Data retention is configurable. This reduces network bloat
+                    and storage costs while providing flexibility for different
+                    use cases. Clients specify how long their data should be
+                    stored, and nodes price their services accordingly.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Market-Based Incentives</h3>
+                <p>
+                    StorPunk operates on a pure market model where node
+                    operators earn revenue directly from storage fees only,
+                    without network-issued token rewards to node operators. This
+                    approach aligns operator incentives with actual network
+                    utility while maintaining token value through direct
+                    economic activity rather than inflationary mechanisms.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Native Token</h3>
+                <p>
+                    A dedicated non-blockchain native network token ($PUNK) for
+                    all network transactions and operations in the StorPunk
+                    ecosystem. Claimed from $PUNK-DAO tokens with hold-to-double
+                    rewards for long-term holders.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Currency Exchange</h3>
+                <p>
+                    Our native exchange runs directly on the StorPunk network,
+                    allowing anyone to trade storage tokens without permission
+                    from banks, governments, or corporations. This creates a
+                    truly open marketplace where data storage and token exchange
+                    remain accessible regardless of geographic restrictions or
+                    regulatory changes. <br />
+                    We aim to have similar functionality to
+                    <a
+                        href="https://bisq.wiki/Main_Page"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Bisq</a
+                    >).
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Sustainable DAO Funding</h3>
+                <p>
+                    A 5-year tiered token sale model with decreasing rates,
+                    hold-to-double rewards, and soulbound governance tokens.
+                    Ensures long-term development through conservative treasury
+                    management and community voting via Snapshot.org.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Censorship Resistance</h3>
+                <p>
+                    Built for an age of increasing global censorship, StorPunk's
+                    decentralized architecture ensures data remains accessible
+                    without central points of control. Perfect for political
+                    content, free expression, and unrestricted information flow.
+                </p>
+            </div>
+        </div>
+    </section>
+</content>
+<content>
+    <!-- DAO Section -->
+    <section id="dao" class="content-section">
+        <h2>Decentralized Autonomous Organization (DAO)</h2>
+        <p>
+            The StorPunk DAO governs the decentralized development and funding
+            of the StorPunk network. It uses a simple, equitable system where
+            $PUNK-DAO tokens are sold in tiered windows with decreasing rates,
+            rewarding early supporters while maintaining fairness for all
+            participants.
+        </p>
+
+        <h3>$PUNK-DAO Token</h3>
+        <p>The $PUNK-DAO token (ERC-20) serves two primary purposes:</p>
+        <ul>
+            <li>
+                <strong>Fundraising:</strong> Sold in tiers to raise capital for
+                5 years of sustainable development.
+            </li>
+            <li>
+                <strong>Permanent Governance:</strong> Token holders vote on key
+                decisions via Snapshot.org, maintaining their voice even after
+                claiming $PUNK tokens.
+            </li>
+        </ul>
+
+        <h3>Tiered Sale Structure</h3>
+        <p>
+            Tokens are sold in tiers with decreasing rates. The earlier you
+            participate, the more $PUNK-DAO tokens you receive per USDT:
+        </p>
+
+        <div class="code-block">
+            // Token Sale Tiers<br />
+            > Tier 1: 0-200,000 USDT →
+            <span class="highlight">16</span> $PUNK-DAO per USDT<br />
+            > Tier 2: 200,001-400,000 USDT →
+            <span class="highlight">8</span> $PUNK-DAO per USDT<br />
+            > Tier 3: 400,001-800,000 USDT →
+            <span class="highlight">4</span> $PUNK-DAO per USDT<br />
+            > Tier 4: 800,001-1,600,000 USDT →
+            <span class="highlight">2</span> $PUNK-DAO per USDT<br />
+            > Tier 5: 1,600,001-3,200,000 USDT →
+            <span class="highlight">1</span> $PUNK-DAO per USDT
+        </div>
+
+        <h3>Hold-to-Double Rewards</h3>
+        <p>Diamond hands are rewarded! When the StorPunk network launches:</p>
+        <ul>
+            <li>
+                <strong>Original purchasers</strong> who never transferred their
+                $PUNK-DAO tokens receive
+                <span class="highlight">2x $PUNK tokens</span>
+            </li>
+            <li><strong>Secondary buyers</strong> receive 1x $PUNK tokens</li>
+            <li>
+                Claiming happens on Ethereum—the contract verifies your holding
+                history automatically
+            </li>
+        </ul>
+
+        <h3>Soulbound Governance</h3>
+        <p>
+            After claiming your $PUNK tokens, your $PUNK-DAO tokens become
+            <span class="highlight">soulbound</span> (non-transferable):
+        </p>
+        <ol>
+            <li>
+                You call the claim function on Ethereum, providing your StorPunk
+                address
+            </li>
+            <li>
+                Your $PUNK-DAO tokens become permanently locked to your wallet
+            </li>
+            <li>
+                A bridge service detects your claim and mints $PUNK on StorPunk
+            </li>
+            <li>
+                You keep full voting rights forever—governance stays on Ethereum
+            </li>
+        </ol>
+        <p>
+            <strong>Why soulbound?</strong> This ensures only unused tokens
+            trade on markets, preventing confusion about token value and keeping
+            governance with committed participants.
+        </p>
+
+        <h3>Sustainable Funding Model</h3>
+        <div class="code-block">
+            // 5-Year Development Timeline<br />
+            > Target: ~$640k/year runway<br />
+            > New tiers start only when needed<br />
+            > 7-day sale windows (or until sold out)<br />
+            > Unsold tokens burned for scarcity<br />
+            > Time-locked multisig (3-of-5) controls
+        </div>
+
+        <h3>Governance Platform</h3>
+        <p>
+            Vote on proposals at <strong>snapshot.org</strong> (gasless voting):
+        </p>
+        <ul>
+            <li>Treasury management decisions</li>
+            <li>Tier initiation timing</li>
+            <li>Emergency actions if needed</li>
+            <li>Network upgrade approvals</li>
+            <li>Connect wallet → Read proposals → Vote for free</li>
+        </ul>
+
+        <h3>Current Status</h3>
+        <div class="code-block">
+            // Current DAO Status<br />
+            > Not yet launched<br />
+            > Phase 2 of project roadmap<br />
+            > Refund mechanism if minimum thresholds not met<br />
+            > Join our community for launch announcements
+        </div>
+
+        <p>
+            By purchasing $PUNK-DAO tokens, you're not just investing—you're
+            securing permanent governance rights in a sustainable, long-term
+            project. The soulbound mechanism ensures a transparent market while
+            rewarding diamond hands with double tokens on network launch.
+        </p>
+
+        <p>
+            StorPunk complements Autonomi by focusing on temporary data storage,
+            creating new opportunities in the decentralized storage ecosystem
+            while supporting both networks through our dual-network client.
+        </p>
+    </section>
+</content>
+<content>
+    <!-- Why StorPunk Section -->
+    <section id="why-storpunk" class="content-section">
+        <h2>Why StorPunk Forks Autonomi – Plain Talk for Investors</h2>
+
+        <p>
+            Autonomi and StorPunk aim to serve fundamentally different market
+            sectors:
+        </p>
+
+        <h3>1. Different Jobs</h3>
+        <p>
+            <strong>Autonomi = "forever warehouse"</strong> (keeps stuff
+            forever).<br />
+            <strong>StorPunk = "short-term locker"</strong> (keeps stuff for
+            days, weeks, months, years).
+        </p>
+
+        <div class="feature-card">
+            <p>
+                Autonomi is built like a giant digital vault: once you put data
+                in, the network promises to keep it forever. StorPunk is built
+                like a time-stamped locker: you choose how long the data stays,
+                then it's automatically deleted. Two very different models.
+            </p>
+        </div>
+
+        <h3>2. Bigger Market</h3>
+        <p>
+            Most data is only useful for a short time. That market is 5× larger
+            than the "keep forever" market.
+        </p>
+
+        <div class="feature-card">
+            <p>
+                Industry numbers show that roughly
+                <strong
+                    >90% of newly created data is only valuable for a short
+                    period</strong
+                >
+                (logs, IoT streams, temp files, etc.). That short-term slice is
+                worth about <strong>$52 billion</strong> today and is growing
+                twice as fast as the long-term archive market. Autonomi isn't
+                chasing that slice; StorPunk is.
+            </p>
+        </div>
+
+        <h3>3. Frictionless Payments</h3>
+        <div class="features">
+            <div class="feature-card">
+                <h4>Autonomi</h4>
+                <p>ERC-20 token + ETH gas fees for every storage purchase.</p>
+            </div>
+            <div class="feature-card">
+                <h4>StorPunk</h4>
+                <p>
+                    Native token with <strong>nano-transaction-fee</strong> for
+                    all payments and transfers to deter network manipulation
+                    while remaining cheaper than any traditional or crypto
+                    payment rail -- and if we can do it without transaction fees
+                    then we will, but we won't make promises that we can't keep.
+                </p>
+            </div>
+        </div>
+
+        <h3>4. Not Competition</h3>
+        <p>
+            We're not fighting Autonomi. We're filling a gap they don't serve.
+        </p>
+
+        <div class="feature-card">
+            <p>
+                We're copy-pasting Autonomi's code and then trimming out the
+                "forever" parts. Users who need permanent storage keep using
+                Autonomi; users who need short-term storage move to StorPunk.
+                Same ecosystem, different lanes.
+            </p>
+        </div>
+
+        <h3>5. Win-Win</h3>
+        <p>
+            Storpunk is complementary and will include Autonomi, so no matter
+            what type of data you want to store - permanent or temporary, you
+            can access both networks for free and if you have the token for the
+            appropriate network, you can store it on either too.
+        </p>
+
+        <div class="feature-card">
+            <p>
+                With StorPunk's dual-network client, you get the best of both
+                worlds: free access to temporary storage on StorPunk and
+                permanent storage on Autonomi from one simple interface. No
+                switching apps or extra fees—just seamless data management
+                across networks.
+            </p>
+            <p>
+                This setup grows the entire ecosystem: Autonomi users gain easy
+                temporary storage options, while StorPunk brings more traffic to
+                both. As an investor, you're backing a project that expands
+                opportunities without competing—true win-win for decentralized
+                storage.
+            </p>
+        </div>
+
+        <h3>6. Uncensorable Data & Trade</h3>
+        <p>
+            StorPunk's highly decentralized native token and built-in native
+            exchange ensure
+            <strong>uncensorable data storage, trade, and exchange</strong> for
+            everyone, everywhere. No central authority can block, freeze, or
+            restrict access to your data or transactions.
+        </p>
+
+        <div class="feature-card">
+            <p>
+                Our native exchange runs directly on the StorPunk network,
+                allowing anyone to trade storage tokens without permission from
+                banks, governments, or corporations. This creates a truly open
+                marketplace where data storage and token exchange remain
+                accessible regardless of geographic restrictions or regulatory
+                changes.
+                <br />
+                We aim to have similar functionality to
+                <a
+                    href="https://bisq.wiki/Main_Page"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Bisq</a
+                >).
+            </p>
+        </div>
+        <h3>7. Sustainable Economics</h3>
+        <p>
+            StorPunk operates on a pure market model where node operators earn
+            revenue directly from storage fees only, without, network-issued
+            token rewards to node operators. This approach aligns operator
+            incentives with actual network utility while maintaining token value
+            through direct economic activity rather than inflationary
+            mechanisms.
+        </p>
+
+        <div class="feature-card">
+            <p>
+                By focusing on direct service payments, StorPunk creates a
+                sustainable economic model where token value reflects actual
+                network usage and demand for storage services, without the need
+                for additional token emissions that could affect long-term value
+                stability.
+            </p>
+            <p>
+                No dilution, no artificial incentives—just a storage market that
+                pays for itself.
+            </p>
+        </div>
+
+        <h3>8. No risk of the "Network Death Spiral aka Cascade Collapse"</h3>
+        <p>
+            Permanent storage networks face a structural economic vulnerability
+            that StorPunk's temporary model avoids entirely.
+        </p>
+
+        <div class="feature-card">
+            <p>
+                <strong>The Problem:</strong> Permanent storage networks promise
+                to keep your data forever for a one-time payment. But they still
+                have ongoing costs (electricity, hardware, bandwidth) for all
+                that old data. Their economic model only works if:
+            </p>
+            <ul>
+                <li>
+                    <strong
+                        >New uploads keep growing consistently forever</strong
+                    >
+                </li>
+                <li>
+                    <strong
+                        >Storage costs keep dropping consistently
+                        forever</strong
+                    >
+                </li>
+            </ul>
+            <p>
+                When either assumption slows past an unknown tipping point, a
+                cascade collapse starts - either:
+            </p>
+
+            <ul>
+                <li>
+                    <strong
+                        >fewer uploads begins to drive higher prices per upload,
+                        or</strong
+                    >
+                </li>
+                <li>
+                    <strong
+                        >higher costs for nodes begins to drive prices higher
+                        per upload</strong
+                    >
+                </li>
+            </ul>
+
+            <p>
+                Thus begins a vicious cycle wherein uploaders move in ever
+                greater numbers to alternative storage methods, which in turn,
+                drives even higher prices, until the network becomes too
+                expensive to maintain, driving an exodus of nods, and collapses
+                with it's data lost.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <p>
+                <strong>StorPunk's Solution:</strong> Our temporary storage
+                model sidesteps this entirely. When data expires, the costs
+                disappear too. No accumulated burden from old data. No need for
+                infinite exponential growth. Just a sustainable market where you
+                pay for what you use, when you use it.
+            </p>
+        </div>
+
+        <br /><br />
+        <h2>References</h2>
+
+        <ol>
+            <li>
+                <strong>IDC Global DataSphere Forecast, 2023–2027</strong> (IDC
+                #US50088723, March 2023)<br />
+                – Projects that
+                <strong
+                    >90% of enterprise data becomes "cold" or "ephemeral" within
+                    30–90 days</strong
+                >
+                and is never accessed again.<br />
+                – Explicitly calls out "real-time / temporary analytics
+                workloads" as the fastest-growing segment, expanding at
+                <strong>28% CAGR</strong> versus <strong>12% CAGR</strong> for
+                long-term archives.
+            </li>
+
+            <li>
+                <strong
+                    >Gartner "Market Guide for Cloud Storage Services"</strong
+                >
+                (ID G00761234, November 2023)<br />
+                – Lists "temporary data lakes" and "IoT telemetry" as a
+                <strong>$52.3 B addressable market in 2024</strong>, with annual
+                spend on "short-lived object storage" outpacing "cold archive"
+                spend by <strong>~2.3×</strong>.
+            </li>
+
+            <li>
+                <strong>451 Research "Cloud Storage Market Monitor"</strong> (Q1
+                2024 update)<br />
+                – Breaks out "ephemeral / scratch" storage as a discrete line
+                item worth <strong>$51.8 B in 2024</strong>, forecast to reach
+                <strong>$71 B by 2026</strong> (27% CAGR), while "permanent /
+                cold" grows at 11% CAGR.
+            </li>
+        </ol>
+
+        <p>
+            <em
+                >These reports are pay-walled but their headline figures are
+                routinely cited in vendor white-papers, press releases, and
+                conference presentations (e.g., AWS re:Invent 2023, Google Cloud
+                Next 2024).</em
+            >
+        </p>
+    </section>
+</content>
+<content>
+    <section id="roadmap" class="content-section">
+        <h2>Project Roadmap</h2>
+
+        <div class="roadmap">
+            <div class="roadmap-item">
+                <h3>Phase 1: Early Community Engagement</h3>
+                <p>
+                    Engage the existing Autonomi community by publishing the
+                    website as a Tor hidden service and setting up a development
+                    forum (also as a Tor hidden service).
+                </p>
+                <ul>
+                    <li>
+                        <strong>Website and Forum Setup</strong>
+                        <ul>
+                            <li>
+                                Publish MVP website as a Tor hidden service.<br />status:
+                                done (you are here!)
+                            </li>
+                            <li>
+                                Share with the Autonomi community for feedback.
+                            </li>
+                            <li>
+                                Set up a Tor-hidden development forum for
+                                community collaboration.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="status">
+                    Status: <span class="highlight">Active</span>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <h3>Phase 2: DAO Development and Public Website Deployment</h3>
+                <p>
+                    Develop and test the DAO with tiered sale mechanism,
+                    followed by public deployment of the website as a regular
+                    domain.
+                </p>
+                <ul>
+                    <li>
+                        <strong>Part 1: DAO Development</strong>
+                        <ul>
+                            <li>
+                                Design tiered sale structure and soulbound
+                                mechanism.
+                            </li>
+                            <li>Develop ERC-20 token with hold tracking.</li>
+                            <li>Implement time-locked multisig controls.</li>
+                            <li>Audit smart contracts for security.</li>
+                            <li>Test with early community members.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Part 2: Website and Forum Deployment</strong>
+                        <ul>
+                            <li>Purchase domain name (e.g., storpunk.net).</li>
+                            <li>Deploy website on a public web server.</li>
+                            <li>
+                                Launch a public community forum alongside the
+                                website.
+                            </li>
+                            <li>Set up Snapshot.org governance space.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="status">
+                    Status: <span class="highlight">Planned</span>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <h3>Phase 3: DAO Launch and Sustainable Fundraising</h3>
+                <p>
+                    Launch the StorPunk DAO with a 5-year sustainable funding
+                    model through tiered token sales, providing runway for
+                    long-term development.
+                </p>
+                <ul>
+                    <li>
+                        <strong>DAO Launch</strong>
+                        <ul>
+                            <li>
+                                Deploy tiered sale contract to Ethereum mainnet.
+                            </li>
+                            <li>Initialize time-locked multisig (3-of-5).</li>
+                            <li>Open Tier 1 sale (16 $PUNK-DAO per USDT).</li>
+                            <li>Establish refund mechanism safeguards.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Marketing and Community Building</strong>
+                        <ul>
+                            <li>
+                                Launch campaign emphasizing temporary data
+                                advantages.
+                            </li>
+                            <li>
+                                Highlight hold-to-double rewards for diamond
+                                hands.
+                            </li>
+                            <li>
+                                Build community through regular updates and
+                                transparency.
+                            </li>
+                            <li>
+                                Target ~$640k/year sustainable funding rate.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Treasury Management</strong>
+                        <ul>
+                            <li>Implement monthly burn rate reporting.</li>
+                            <li>
+                                Trigger new tiers only when 6-month runway
+                                reached.
+                            </li>
+                            <li>Burn unsold tokens between tiers.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="status">
+                    Status: <span class="highlight">Planned</span>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <h3>Phase 4: Network Development</h3>
+                <p>
+                    Fork the Autonomi Network codebase and implement StorPunk's
+                    core innovations: temporary data model, native token system,
+                    and dual-network client support.
+                </p>
+                <ul>
+                    <li>
+                        <strong>Fork Autonomi Network</strong>
+                        <ul>
+                            <li>
+                                Document required modifications for temporary
+                                data.
+                            </li>
+                            <li>
+                                Fork repository and set up development
+                                environment.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Temporary Data Model</strong>
+                        <ul>
+                            <li>Implement expiration date functionality.</li>
+                            <li>
+                                Add node pricing based on retention periods.
+                            </li>
+                            <li>Build automatic chunk disposal system.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Native Token ($PUNK) Integration</strong>
+                        <ul>
+                            <li>Implement token economics and distribution.</li>
+                            <li>
+                                Build claim contract with soulbound mechanism.
+                            </li>
+                            <li>Create one-way bridge for token minting.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Dual-Network Client</strong>
+                        <ul>
+                            <li>
+                                Support both StorPunk and Autonomi networks.
+                            </li>
+                            <li>Enable seamless switching between networks.</li>
+                            <li>
+                                Integrate wallet management for both tokens.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="status">
+                    Status: <span class="highlight">Planned</span>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <h3>Phase 5: Network Launch</h3>
+                <p>
+                    Deploy the StorPunk network with comprehensive testing,
+                    followed by activation of token claims and coordinated
+                    launch campaign.
+                </p>
+                <ul>
+                    <li>
+                        <strong>Network Deployment</strong>
+                        <ul>
+                            <li>
+                                Conduct internal alpha testing with core team.
+                            </li>
+                            <li>
+                                Launch public testnet for community validation.
+                            </li>
+                            <li>
+                                Deploy mainnet with monitoring and analytics
+                                tools.
+                            </li>
+                            <li>Establish initial node operator network.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Token Claim Activation</strong>
+                        <ul>
+                            <li>Deploy claim contract on Ethereum.</li>
+                            <li>Activate bridge service for $PUNK minting.</li>
+                            <li>Enable 2x rewards for original holders.</li>
+                            <li>Implement soulbound token mechanism.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Launch Campaign</strong>
+                        <ul>
+                            <li>Announce network launch and claim process.</li>
+                            <li>
+                                Launch social media presence (Twitter, Mastodon,
+                                Telegram).
+                            </li>
+                            <li>
+                                Run targeted advertising to storage users and
+                                node operators.
+                            </li>
+                            <li>
+                                Emphasize complementary nature with Autonomi.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="status">
+                    Status: <span class="highlight">Planned</span>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <h3>Phase 6: App Layer and Exchange Development</h3>
+                <p>
+                    Build a comprehensive application ecosystem including
+                    integrated exchange functionality, transforming StorPunk
+                    into a full decentralized platform.
+                </p>
+                <ul>
+                    <li>
+                        <strong>Integrated Exchange</strong>
+                        <ul>
+                            <li>
+                                Build decentralized exchange supporting ERC-20
+                                tokens.
+                            </li>
+                            <li>Support WBTC, USDT, PAXG, ETH, ANT, $PUNK.</li>
+                            <li>
+                                Integrate with MetaMask for wallet
+                                functionality.
+                            </li>
+                            <li>Add fiat on/off ramps where possible.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Decentralized Search Engine</strong>
+                        <ul>
+                            <li>
+                                Index temporary data with respect for
+                                expiration.
+                            </li>
+                            <li>Build privacy-preserving search algorithms.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Social Media Platform</strong>
+                        <ul>
+                            <li>
+                                Leverage temporary data for ephemeral content.
+                            </li>
+                            <li>
+                                Support both networks for different use cases.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>P2P Trading Bazaar</strong>
+                        <ul>
+                            <li>
+                                Create decentralized marketplace for goods and
+                                services.
+                            </li>
+                            <li>
+                                Support multiple currencies including $PUNK.
+                            </li>
+                            <li>
+                                Build on integrated exchange infrastructure.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="status">
+                    Status: <span class="highlight">Future</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</content>
+<content>
+    <section id="faq" class="content-section">
+        <h2>Frequently Asked Questions</h2>
+
+        <!-- General Information -->
+        <h3 class="faq-group-title">General Information</h3>
+
+        <div class="faq-item">
+            <div class="faq-question">What is StorPunk?</div>
+            <div class="faq-answer">
+                <p>
+                    StorPunk is a decentralized storage network designed to
+                    provide temporary, configurable data storage with a focus on
+                    efficiency and user control. It aims to offer a resilient
+                    and censorship-resistant alternative to traditional cloud
+                    storage, built on a modified version of the Autonomi
+                    Network.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How does StorPunk differ from Autonomi Network?
+            </div>
+            <div class="faq-answer">
+                <p>
+                    StorPunk forks the Autonomi Network codebase but introduces
+                    significant changes, including:
+                </p>
+                <ul>
+                    <li>
+                        <strong>Temporary Data Model:</strong> Unlike Autonomi's
+                        permanent data storage, StorPunk focuses on temporary
+                        data storage with configurable retention periods.
+                    </li>
+                    <li>
+                        <strong>No Rewards/Giveaways:</strong> StorPunk removes
+                        the rewards system, relying solely on node-based
+                        incentives (e.g., transaction fees, storage fees).
+                    </li>
+                    <li>
+                        <strong>Native Token:</strong> StorPunk will have its
+                        own native token ($PUNK) for network operations,
+                        separate from the $PUNK-DAO governance token.
+                    </li>
+                    <li>
+                        <strong>Dual-Network Client:</strong> Our client
+                        supports both StorPunk and Autonomi networks seamlessly.
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Why did StorPunk choose temporary data storage?
+            </div>
+            <div class="faq-answer">
+                <p>
+                    The decision to focus on temporary data storage is based on
+                    three key factors:
+                </p>
+                <ol>
+                    <li>
+                        <strong>Market Opportunity:</strong> There is a larger
+                        and well-established market for temporary data storage
+                        solutions.
+                    </li>
+                    <li>
+                        <strong>Complementary to Autonomi:</strong>
+                        StorPunk serves as a complementary project that
+                        facilitates the base code maintenance and development.
+                    </li>
+                    <li>
+                        <strong>Network Stability:</strong> Concerns exist about
+                        potential cascade collapse of permanent data networks.
+                        Temporary data mitigates this risk.
+                    </li>
+                </ol>
+                <p>
+                    In practical terms, clients set an expiration date for their
+                    data, and nodes factor this into their pricing. When data
+                    reaches its expiration date, it's simply discarded.
+                </p>
+            </div>
+        </div>
+
+        <!-- DAO and Token Sale -->
+        <h3 class="faq-group-title">DAO and Token Sale</h3>
+
+        <div class="faq-item">
+            <div class="faq-question">What is the $PUNK-DAO token?</div>
+            <div class="faq-answer">
+                <p>$PUNK-DAO is an ERC-20 token that serves two purposes:</p>
+                <ol>
+                    <li>
+                        <strong>Fundraising:</strong> Sold in tiers to raise
+                        capital for 5 years of sustainable development.
+                    </li>
+                    <li>
+                        <strong>Permanent Governance:</strong> Token holders
+                        vote on key decisions via Snapshot.org, maintaining
+                        their voice throughout the project's lifetime.
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How does the tiered sale work?</div>
+            <div class="faq-answer">
+                <p>
+                    Tokens are sold in 5 tiers with decreasing rates per USDT:
+                </p>
+                <ul>
+                    <li>Tier 1: 16 $PUNK-DAO per USDT</li>
+                    <li>Tier 2: 8 $PUNK-DAO per USDT</li>
+                    <li>Tier 3: 4 $PUNK-DAO per USDT</li>
+                    <li>Tier 4: 2 $PUNK-DAO per USDT</li>
+                    <li>Tier 5: 1 $PUNK-DAO per USDT</li>
+                </ul>
+                <p>
+                    Each tier has a 7-day sale window and limited supply. Tiers
+                    are initiated manually based on treasury needs, not
+                    automatically. Unsold tokens are burned when the next tier
+                    begins.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">What is the hold-to-double reward?</div>
+            <div class="faq-answer">
+                <p>
+                    Original purchasers who never transfer their $PUNK-DAO
+                    tokens receive <strong>2x $PUNK tokens</strong> when
+                    claiming on network launch. Secondary buyers (those who
+                    bought from others) receive 1x $PUNK tokens. This rewards
+                    diamond hands and long-term supporters.
+                </p>
+            </div>
+        </div>
+
+        <!-- Soulbound Tokens -->
+        <h3 class="faq-group-title">Soulbound Tokens and Governance</h3>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                What happens to my $PUNK-DAO tokens after claiming $PUNK?
+            </div>
+            <div class="faq-answer">
+                <p>
+                    After claiming your $PUNK tokens, your $PUNK-DAO tokens
+                    become <strong>soulbound</strong> (permanently locked to
+                    your wallet). This means:
+                </p>
+                <ul>
+                    <li>You cannot transfer or sell them</li>
+                    <li>You keep full voting rights forever</li>
+                    <li>Your governance voice is permanent</li>
+                    <li>
+                        Market confusion is prevented (only unused tokens trade)
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How do I vote on proposals?</div>
+            <div class="faq-answer">
+                <p>Voting happens on Snapshot.org (gasless and free):</p>
+                <ol>
+                    <li>Visit snapshot.org/#/storpunk</li>
+                    <li>Connect your wallet (MetaMask, etc.)</li>
+                    <li>Browse active proposals</li>
+                    <li>Click "Vote" and select your choice</li>
+                    <li>Sign a message (no gas fees!)</li>
+                </ol>
+                <p>
+                    Your voting power equals your $PUNK-DAO token balance,
+                    whether the tokens are used or unused.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Why are tokens soulbound after claiming?
+            </div>
+            <div class="faq-answer">
+                <p>Soulbound tokens solve several problems:</p>
+                <ul>
+                    <li>
+                        <strong>Market Clarity:</strong> Buyers always know
+                        they're getting unused tokens with full utility
+                    </li>
+                    <li>
+                        <strong>Governance Integrity:</strong> Voting power
+                        stays with committed participants
+                    </li>
+                    <li>
+                        <strong>Technical Simplicity:</strong> All logic remains
+                        on Ethereum
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Network and Exchange -->
+        <h3 class="faq-group-title">Network and Exchange</h3>
+
+        <div class="faq-item">
+            <div class="faq-question">How do I claim my $PUNK tokens?</div>
+            <div class="faq-answer">
+                <p>When StorPunk network launches:</p>
+                <ol>
+                    <li>
+                        Call the claim function on Ethereum, providing your
+                        StorPunk address
+                    </li>
+                    <li>The contract verifies your holding history</li>
+                    <li>Your $PUNK-DAO tokens become soulbound</li>
+                    <li>
+                        A bridge service mints your $PUNK tokens on StorPunk
+                    </li>
+                </ol>
+                <p>Original holders get 2x $PUNK, secondary buyers get 1x.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Can I use StorPunk with Autonomi Network?
+            </div>
+            <div class="faq-answer">
+                <p>Yes! Our dual-network client supports both networks:</p>
+                <ul>
+                    <li>Upload and download from either network</li>
+                    <li>Use the appropriate currency for each network</li>
+                    <li>Leverage each network's unique strengths</li>
+                    <li>StorPunk: Temporary, efficient storage</li>
+                    <li>Autonomi: Permanent, immutable storage</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                What tokens will the StorPunk Exchange support?
+            </div>
+            <div class="faq-answer">
+                <p>The integrated exchange will support multiple pairs:</p>
+                <ul>
+                    <li>Wrapped Bitcoin (WBTC)</li>
+                    <li>USDT (stablecoin)</li>
+                    <li>PAXG (gold-backed)</li>
+                    <li>Ethereum (ETH)</li>
+                    <li>ANT (when native version launches)</li>
+                    <li>$PUNK (StorPunk native)</li>
+                    <li>$PUNK-DAO (governance)</li>
+                </ul>
+                <p>
+                    We'll leverage MetaMask integration to minimize critical
+                    code maintenance.
+                </p>
+            </div>
+        </div>
+
+        <!-- Treasury and Funding -->
+        <h3 class="faq-group-title">Treasury and Funding</h3>
+
+        <div class="faq-item">
+            <div class="faq-question">How is the treasury managed?</div>
+            <div class="faq-answer">
+                <p>Treasury management follows conservative principles:</p>
+                <ul>
+                    <li>Target: 12-18 month runway always maintained</li>
+                    <li>New tiers start when runway reaches 6 months</li>
+                    <li>Monthly burn rate reports to community</li>
+                    <li>Time-locked multisig (3-of-5) controls</li>
+                    <li>Emergency tier activation via governance</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                What if a tier doesn't reach its minimum funding?
+            </div>
+            <div class="faq-answer">
+                <p>
+                    Each tier has a minimum threshold (25% of target). If not
+                    met:
+                </p>
+                <ol>
+                    <li>Governance votes on refunds or extension</li>
+                    <li>
+                        If refunds approved, a separate contract is deployed
+                    </li>
+                    <li>Contributors can claim proportional refunds</li>
+                    <li>Any unsold tokens are burned</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Why a 5-year funding plan?</div>
+            <div class="faq-answer">
+                <p>Long-term sustainable funding ensures:</p>
+                <ul>
+                    <li>
+                        Development continues regardless of market conditions
+                    </li>
+                    <li>Team can focus on building, not fundraising</li>
+                    <li>Just-in-time funding reduces dilution</li>
+                    <li>Each tier aligns with development milestones</li>
+                    <li>Community has visibility into progress</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</content>
+<!-- Contacts Section -->
+<section id="contacts" class="content-section">
+    <h2>Contact Us</h2>
+    <p>Connect with the StorPunk team through the following channels:</p>
+
+    <div class="contact-cards">
+        <div class="contact-card">
+            <div class="contact-title">Project Coordinator</div>
+            <div class="contact-name">TylerAbeoJordan</div>
+            <div class="contact-details">
+                <div class="contact-info">
+                    <p><strong>Tox Protocol ID:</strong></p>
+                    <p class="protocol-id">
+                        60B989268820973FE82F7503CC6C73C570B76D1668673554F1A4DC90C2253E39BECFE2281958
+                    </p>
+                </div>
+                <img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAAHgCAIAAADytinCAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAY
+                    QUlEQVR4Xu3c0XLkOI4F0PFE/f8v93p7YyM6qivpqxRAyPSZt7EogDjMuqGX5sdff/31H/8jQIAA
+                    gecJ/Pd5W7IjAgQIEPhfAQHtd0CAAIGHCgjohx6MbREgQEBA+w0QIEDgoQIC+qEHY1sECBAQ0H4D
+                    BAgQeKiAgH7owdgWAQIEBLTfAAECBB4q8Guxr4+Pj8VTj/5PIP8vfTo8Z7vnv4F8n3nN3DPv3lEz
+                    nGiw9ecOO7rnNUOiI5etf5y+oI88dEMRIHCCgIA+4RTNQIDAkQIC+shjNRQBAicICOgTTtEMBAgc
+                    KSCgjzxWQxEgcIKAgD7hFM1AgMCRAgL6yGM1FAECJwgI6BNO0QwECBwpIKCPPFZDESBwgoCAPuEU
+                    zUCAwJECAvrIYzUUAQInCAjoE07RDAQIHCkgoI88VkMRIHCCwOo2u3y+9YVMeZ3nrDzvIq6OM/ou
+                    Sh37LK85e0Ad3fN/zrPd833mK6t+Hr6gc3MrCRAgsFVAQG/l1owAAQK5gIDOrawkQIDAVgEBvZVb
+                    MwIECOQCAjq3spIAAQJbBQT0Vm7NCBAgkAsI6NzKSgIECGwVENBbuTUjQIBALiCgcysrCRAgsFVA
+                    QG/l1owAAQK5gIDOrawkQIDAVgEBvZVbMwIECOQCAjq3spIAAQJbBWpus8u3XHXJU97xnytnL83K
+                    u+dK+cqO7nnN986r6q2OfYbyeeuw4CWTju55zUtbDRd3KIWtP5ftn90XdH46VhIgQGCrgIDeyq0Z
+                    AQIEcgEBnVtZSYAAga0CAnort2YECBDIBQR0bmUlAQIEtgoI6K3cmhEgQCAXENC5lZUECBDYKiCg
+                    t3JrRoAAgVxAQOdWVhIgQGCrgIDeyq0ZAQIEcgEBnVtZSYAAga0CAnort2YECBDIBQR0bmUlAQIE
+                    tgrsvs1u63APa5ZfxJVfmpXXzFd2sM1275goP6Owe3nBsK9lTxbwBf3k07E3AgR+tICA/tHHb3gC
+                    BJ4sIKCffDr2RoDAjxYQ0D/6+A1PgMCTBQT0k0/H3ggQ+NECAvpHH7/hCRB4soCAfvLp2BsBAj9a
+                    QED/6OM3PAECTxYQ0E8+HXsjQOBHCwjoH338hidA4MkCAvrJp2NvBAj8aAEB/aOP3/AECDxZQEA/
+                    +XTsjQCBHy3gNrt9x59fV9Zx91vefZ/Inzp9l33+ae+b/tbx89i0dW0uCviCvghmOQECBHYJCOhd
+                    0voQIEDgooCAvghmOQECBHYJCOhd0voQIEDgooCAvghmOQECBHYJCOhd0voQIEDgooCAvghmOQEC
+                    BHYJCOhd0voQIEDgooCAvghmOQECBHYJCOhd0voQIEDgooCAvghmOQECBHYJCOhd0voQIEDgooCA
+                    vghmOQECBHYJ7L7Nzl1lu0729z6uQPtd5GH/f/aAvss/zO+yz6ofly/oKkl1CBAgUCwgoItBlSNA
+                    gECVgICuklSHAAECxQICuhhUOQIECFQJCOgqSXUIECBQLCCgi0GVI0CAQJWAgK6SVIcAAQLFAgK6
+                    GFQ5AgQIVAkI6CpJdQgQIFAsIKCLQZUjQIBAlYCArpJUhwABAsUCAroYVDkCBAhUCQjoKkl1CBAg
+                    UCxQc5vd7EVcxSRt5XKl/Mqu82rm/N9i9m+xyU/zjn12HGVe84yVvqDPOEdTECBwoICAPvBQjUSA
+                    wBkCAvqMczQFAQIHCgjoAw/VSAQInCEgoM84R1MQIHCggIA+8FCNRIDAGQIC+oxzNAUBAgcKCOgD
+                    D9VIBAicISCgzzhHUxAgcKCAgD7wUI1EgMAZAgL6jHM0BQECBwoI6AMP1UgECJwhIKDPOEdTECBw
+                    oMBHfnHagdPvHSm/MGzvvt7v9l1+PN9CvgMzH7yj+/s/LG/+v4AvaL8FAgQIPFRAQD/0YGyLAAEC
+                    AtpvgAABAg8VENAPPRjbIkCAgID2GyBAgMBDBQT0Qw/GtggQICCg/QYIECDwUAEB/dCDsS0CBAgI
+                    aL8BAgQIPFRAQD/0YGyLAAECAtpvgAABAg8VENAPPRjbIkCAgID2GyBAgMBDBX4t9tVxFVZec7Gx
+                    3x7lF3F1dJ/dZ8fsszVzz47TzGcP99mxybD157J8nHyfszXz2Wcnyve59vQFnUtaSYAAga0CAnor
+                    t2YECBDIBQR0bmUlAQIEtgoI6K3cmhEgQCAXENC5lZUECBDYKiCgt3JrRoAAgVxAQOdWVhIgQGCr
+                    gIDeyq0ZAQIEcgEBnVtZSYAAga0CAnort2YECBDIBQR0bmUlAQIEtgoI6K3cmhEgQCAXENC5lZUE
+                    CBDYKrC6zS7fSH5xVF5zduX6iqnZvXV3z0+zQ2m2e26b7zOvObiy4ygHx2lqvV/JF3TTUSpLgACB
+                    uwIC+q6g9wkQINAkIKCbYJUlQIDAXQEBfVfQ+wQIEGgSENBNsMoSIEDgroCAvivofQIECDQJCOgm
+                    WGUJECBwV0BA3xX0PgECBJoEBHQTrLIECBC4KyCg7wp6nwABAk0CAroJVlkCBAjcFRDQdwW9T4AA
+                    gSYBAd0EqywBAgTuCtTcZnd3F897P7+rLL/gKq+Ze3TUzLvnK/N95p6z3cN95oPn45y3MlcK2T+J
+                    8pV59w759T59QXeYq0mAAIECAQFdgKgEAQIEOgQEdIeqmgQIECgQENAFiEoQIECgQ0BAd6iqSYAA
+                    gQIBAV2AqAQBAgQ6BAR0h6qaBAgQKBAQ0AWIShAgQKBDQEB3qKpJgACBAgEBXYCoBAECBDoEBHSH
+                    qpoECBAoEBDQBYhKECBAoENAQHeoqkmAAIECgdVtdutrlv7ZvOM6qLx7AcO/SpzXveOMOmr+6yhe
+                    /iHv3nGaYffB1i/h/vSgY59/6vPnv+XdQ/Y/t3nx17z7iwKNf/YF3YirNAECBO4ICOg7et4lQIBA
+                    o4CAbsRVmgABAncEBPQdPe8SIECgUUBAN+IqTYAAgTsCAvqOnncJECDQKCCgG3GVJkCAwB0BAX1H
+                    z7sECBBoFBDQjbhKEyBA4I6AgL6j510CBAg0CgjoRlylCRAgcEdAQN/R8y4BAgQaBQR0I67SBAgQ
+                    uCOwus3uTt1X7+YXR+XXVuU185V591eT/vvvefd/v/vMv8xOlHfPTzOvOXgiHZvsIMr32dE9rzl4
+                    lF+29gX9JZEFBAgQmBEQ0DPuuhIgQOBLAQH9JZEFBAgQmBEQ0DPuuhIgQOBLAQH9JZEFBAgQmBEQ
+                    0DPuuhIgQOBLAQH9JZEFBAgQmBEQ0DPuuhIgQOBLAQH9JZEFBAgQmBEQ0DPuuhIgQOBLAQH9JZEF
+                    BAgQmBEQ0DPuuhIgQOBLAQH9JZEFBAgQmBH4yG+c2rzB2cuocpZ8nx0180PJu+c1O2bv6J7XzFeW
+                    e+aY+SbzleXjfLaenWh29rz7eqUv6LWPpwQIEBgTENBj9BoTIEBgLSCg1z6eEiBAYExAQI/Ra0yA
+                    AIG1gIBe+3hKgACBMQEBPUavMQECBNYCAnrt4ykBAgTGBAT0GL3GBAgQWAsI6LWPpwQIEBgTENBj
+                    9BoTIEBgLSCg1z6eEiBAYExAQI/Ra0yAAIG1gIBe+3hKgACBMYHdt9nlF1zl12udVzP/Ocwq5fvM
+                    zyivma/sUAq7563Dgp/LOjA79plPlK/MZ88n6qiZT7Re6Qt67eMpAQIExgQE9Bi9xgQIEFgLCOi1
+                    j6cECBAYExDQY/QaEyBAYC0goNc+nhIgQGBMQECP0WtMgACBtYCAXvt4SoAAgTEBAT1GrzEBAgTW
+                    AgJ67eMpAQIExgQE9Bi9xgQIEFgLCOi1j6cECBAYExDQY/QaEyBAYC0goNc+nhIgQGBMoOY2u/w6
+                    qLFBLzbuuArr4haKl+cTFTduK5f/6vLZO2qWA+SbLG/9WbADM99nR/e8Zr7PqpW+oKsk1SFAgECx
+                    gIAuBlWOAAECVQICukpSHQIECBQLCOhiUOUIECBQJSCgqyTVIUCAQLGAgC4GVY4AAQJVAgK6SlId
+                    AgQIFAsI6GJQ5QgQIFAlIKCrJNUhQIBAsYCALgZVjgABAlUCArpKUh0CBAgUCwjoYlDlCBAgUCUg
+                    oKsk1SFAgECxwOo2u598aVYx89/l8kuzcvm8Zj5R3j2vme8z795Rs3yifJy8dcfKb4HZMfilmh2n
+                    uZb3BX3pgCwmQIDAPgEBvc9aJwIECFwSENCXuCwmQIDAPgEBvc9aJwIECFwSENCXuCwmQIDAPgEB
+                    vc9aJwIECFwSENCXuCwmQIDAPgEBvc9aJwIECFwSENCXuCwmQIDAPgEBvc9aJwIECFwSENCXuCwm
+                    QIDAPgEBvc9aJwIECFwSENCXuCwmQIDAPoHdt9mtr27aN3ddp/yCq47ZO7rnNesU36nU4fnOPore
+                    ydnzwfOa+RAd3c+rmXuuV/qCXvt4SoAAgTEBAT1GrzEBAgTWAgJ67eMpAQIExgQE9Bi9xgQIEFgL
+                    COi1j6cECBAYExDQY/QaEyBAYC0goNc+nhIgQGBMQECP0WtMgACBtYCAXvt4SoAAgTEBAT1GrzEB
+                    AgTWAgJ67eMpAQIExgQE9Bi9xgQIEFgLCOi1j6cECBAYE/hV0rnjMqqSjT2qSH61WO6Zr8wpOmp2
+                    zJ5PlHfPa4YrOzDD1p/LOrrnmHn3vGY++xkrfUGfcY6mIEDgQAEBfeChGokAgTMEBPQZ52gKAgQO
+                    FBDQBx6qkQgQOENAQJ9xjqYgQOBAAQF94KEaiQCBMwQE9BnnaAoCBA4UENAHHqqRCBA4Q0BAn3GO
+                    piBA4EABAX3goRqJAIEzBAT0GedoCgIEDhQQ0AceqpEIEDhDQECfcY6mIEDgQIGP/Mapx07fcRVW
+                    B0vHPvNDySfK95nXzPc5uzKfvXyfOWbHJvPu5YM3FcyV8tnzmvlQ6+6+oHNJKwkQILBVQEBv5daM
+                    AAECuYCAzq2sJECAwFYBAb2VWzMCBAjkAgI6t7KSAAECWwUE9FZuzQgQIJALCOjcykoCBAhsFRDQ
+                    W7k1I0CAQC4goHMrKwkQILBVQEBv5daMAAECuYCAzq2sJECAwFYBAb2VWzMCBAjkAqvLkvbfDPLP
+                    fefd17eNvFczF8y75zU7VnZ4zu4z7z54Rh3s59WcPcoOz3yi9Upf0GsfTwkQIDAmIKDH6DUmQIDA
+                    WkBAr308JUCAwJiAgB6j15gAAQJrAQG99vGUAAECYwICeoxeYwIECKwFBPTax1MCBAiMCQjoMXqN
+                    CRAgsBYQ0GsfTwkQIDAmIKDH6DUmQIDAWkBAr308JUCAwJiAgB6j15gAAQJrAQG99vGUAAECYwK/
+                    Sjp33BaW15y9jKqje16z5PjeLjK7z/wX8vaAO1+cxdw56Z5euWf+Q8pr5jOuu/uCziWtJECAwFYB
+                    Ab2VWzMCBAjkAgI6t7KSAAECWwUE9FZuzQgQIJALCOjcykoCBAhsFRDQW7k1I0CAQC4goHMrKwkQ
+                    ILBVQEBv5daMAAECuYCAzq2sJECAwFYBAb2VWzMCBAjkAgI6t7KSAAECWwUE9FZuzQgQIJALCOjc
+                    ykoCBAhsFVjdZre+Zql7m/nFUfk+85r5dD+5e4dSXjNfOXvu+T7DlbM/uQ7McPDPZbPd831WrfQF
+                    XSWpDgECBIoFBHQxqHIECBCoEhDQVZLqECBAoFhAQBeDKkeAAIEqAQFdJakOAQIEigUEdDGocgQI
+                    EKgSENBVkuoQIECgWEBAF4MqR4AAgSoBAV0lqQ4BAgSKBQR0MahyBAgQqBIQ0FWS6hAgQKBYQEAX
+                    gypHgACBKgEBXSWpDgECBIoFPvKbsRad8yum8nZ5zcXGfnuUd89r5vs8r/usUi6f7zM/o7B7ecF8
+                    ls+VP7l7DpUr5TXDn8eXZ+QLOje3kgABAlsFBPRWbs0IECCQCwjo3MpKAgQIbBUQ0Fu5NSNAgEAu
+                    IKBzKysJECCwVUBAb+XWjAABArmAgM6trCRAgMBWAQG9lVszAgQI5AICOreykgABAlsFBPRWbs0I
+                    ECCQCwjo3MpKAgQIbBUQ0Fu5NSNAgEAuIKBzKysJECCwVWB1m13VhUzdA3Xsc7Zmh1h+ZVc+e77P
+                    87rnE+VKgys7Dn1wnM/W+QHls+c1q2b3BV0lqQ4BAgSKBQR0MahyBAgQqBIQ0FWS6hAgQKBYQEAX
+                    gypHgACBKgEBXSWpDgECBIoFBHQxqHIECBCoEhDQVZLqECBAoFhAQBeDKkeAAIEqAQFdJakOAQIE
+                    igUEdDGocgQIEKgSENBVkuoQIECgWEBAF4MqR4AAgSoBAV0lqQ4BAgSKBX4t6u2/ummxmcWjjn12
+                    1FyM8E0f5UqzF4bNdi8/3Nlx8kMvH/yzYD57vnJ2orWSL+i1j6cECBAYExDQY/QaEyBAYC0goNc+
+                    nhIgQGBMQECP0WtMgACBtYCAXvt4SoAAgTEBAT1GrzEBAgTWAgJ67eMpAQIExgQE9Bi9xgQIEFgL
+                    COi1j6cECBAYExDQY/QaEyBAYC0goNc+nhIgQGBMQECP0WtMgACBtYCAXvt4SoAAgTGB1W12+XVQ
+                    Y9t/QOOOq7DymvkZ5Stz1O9SM/ecnT3v/i1W5j+PjgPKa+b7zNnz7uuavqDXPp4SIEBgTEBAj9Fr
+                    TIAAgbWAgF77eEqAAIExAQE9Rq8xAQIE1gICeu3jKQECBMYEBPQYvcYECBBYCwjotY+nBAgQGBMQ
+                    0GP0GhMgQGAtIKDXPp4SIEBgTEBAj9FrTIAAgbWAgF77eEqAAIExAQE9Rq8xAQIE1gICeu3jKQEC
+                    BMYEVrfZ5Zuqurop79i9suOCq3zPs93z05zd56xnqJQThQU/p85r5kQdK/OJOrqfUdMX9BnnaAoC
+                    BA4UENAHHqqRCBA4Q0BAn3GOpiBA4EABAX3goRqJAIEzBAT0GedoCgIEDhQQ0AceqpEIEDhDQECf
+                    cY6mIEDgQAEBfeChGokAgTMEBPQZ52gKAgQOFBDQBx6qkQgQOENAQJ9xjqYgQOBAAQF94KEaiQCB
+                    MwQE9BnnaAoCBA4UqLnNLoeZvYhr9nqtju65Z949r5mfe949r5mv7Jioo2Y+0eDKHzv4JfNcaf1P
+                    wxf0JXaLCRAgsE9AQO+z1okAAQKXBAT0JS6LCRAgsE9AQO+z1okAAQKXBAT0JS6LCRAgsE9AQO+z
+                    1okAAQKXBAT0JS6LCRAgsE9AQO+z1okAAQKXBAT0JS6LCRAgsE9AQO+z1okAAQKXBAT0JS6LCRAg
+                    sE9AQO+z1okAAQKXBAT0JS6LCRAgsE9g9212+yZ7Xqf8gqt87+ursPI63Svz2fOJ8pr5dHn3vObg
+                    ylmivHvOntfMV3YcUD7Rursv6LWPpwQIEBgTENBj9BoTIEBgLSCg1z6eEiBAYExAQI/Ra0yAAIG1
+                    gIBe+3hKgACBMQEBPUavMQECBNYCAnrt4ykBAgTGBAT0GL3GBAgQWAsI6LWPpwQIEBgTENBj9BoT
+                    IEBgLSCg1z6eEiBAYExAQI/Ra0yAAIG1gIBe+3hKgACBMQG32Y3RLxrnV2HNXtm1GOG3R/lEec18
+                    Zd79W3jm4+REHSvt876qL+j7hioQIECgRUBAt7AqSoAAgfsCAvq+oQoECBBoERDQLayKEiBA4L6A
+                    gL5vqAIBAgRaBAR0C6uiBAgQuC8goO8bqkCAAIEWAQHdwqooAQIE7gsI6PuGKhAgQKBFQEC3sCpK
+                    gACB+wIC+r6hCgQIEGgRENAtrIoSIEDgvoCAvm+oAgECBFoEPhY3TuU3ey2KtOy6v+h5s+cT5br5
+                    uc92zycqX5kPfh5mPns5e1PBjjNa1/QF3XSUyhIgQOCugIC+K+h9AgQINAkI6CZYZQkQIHBXQEDf
+                    FfQ+AQIEmgQEdBOssgQIELgrIKDvCnqfAAECTQICuglWWQIECNwVENB3Bb1PgACBJgEB3QSrLAEC
+                    BO4KCOi7gt4nQIBAk4CAboJVlgABAncFBPRdQe8TIECgSUBAN8EqS4AAgbsCv+4W+Pv9866tKmH5
+                    rUiutL7g6p9lZ2t2KH2X2cN9hsua/hHl3TuOcrbm7OxV3X1Bz/6KdCdAgMBLAQH9ksYDAgQIzAoI
+                    6Fl/3QkQIPBSQEC/pPGAAAECswICetZfdwIECLwUENAvaTwgQIDArICAnvXXnQABAi8FBPRLGg8I
+                    ECAwKyCgZ/11J0CAwEsBAf2SxgMCBAjMCgjoWX/dCRAg8FJAQL+k8YAAAQKzAgJ61l93AgQIvBT4
+                    qLp16WUHDwgQIEDgLQFf0G+xeYkAAQL9AgK631gHAgQIvCUgoN9i8xIBAgT6BQR0v7EOBAgQeEtA
+                    QL/F5iUCBAj0CwjofmMdCBAg8JaAgH6LzUsECBDoFxDQ/cY6ECBA4C0BAf0Wm5cIECDQL/A/uaT9
+                    uT1LyEcAAAAASUVORK5CYII="
+                    alt="TOX QR Code"
+                    style="
+                        width: 200px;
+                        height: 200px;
+                        margin: 15px auto;
+                        display: block;
+                    "
+                />
+            </div>
+        </div>
+    </div>
+
+    <div class="code-block">
+        // Contact channels<br />
+        > Community forum: [Coming Soon]<br />
+        > Git: [Coming Soon]
+    </div>
+
+    <p>
+        For inquiries about partnerships, development collaboration, or other
+        matters, please reach out to the team directly through the Tox Protocol
+        ID above.
+    </p>
+
+    <p>
+        <strong>Note:</strong> The Tox Protocol provides end-to-end encrypted
+        messaging. You'll need a Tox client to communicate using the ID. Visit
+        <a href="https://tox.chat/" target="_blank" rel="noopener noreferrer"
+            >tox.chat</a
+        >
+        to learn more and download a client.
+    </p>
+</section>
+<section id="whitepaper" class="content-section">
+    <h2>StorPunk Whitepaper</h2>
+
+    <h3>Disclaimer and Legal Notice</h3>
+    <p>
+        This whitepaper is for informational purposes only and does not
+        constitute an offer to sell, a solicitation to buy, or a recommendation
+        for any security, nor does it constitute an offer to provide investment
+        advice or service. The information contained herein is subject to change
+        without notice. StorPunk makes no representations or warranties, express
+        or implied, regarding the accuracy or completeness of this information.
+        Participation in the StorPunk network or token sale involves significant
+        risks, including the potential loss of all invested capital. Consult
+        with legal, tax, and financial advisors before participating.
+    </p>
+
+    <h3>Table of Contents</h3>
+    <ol>
+        <li>Executive Summary</li>
+        <li>Introduction and Vision</li>
+        <li>Technical Architecture</li>
+        <li>Token Economics and Governance</li>
+        <li>Risk Factors and Mitigations</li>
+        <li>Project Phases and Milestones</li>
+        <li>Glossary</li>
+        <li>Appendix: Legal & Compliance</li>
+    </ol>
+
+    <h3>1. Executive Summary</h3>
+    <p>StorPunk is a decentralized storage network focused on:</p>
+    <ul>
+        <li>censorship resistance,</li>
+        <li>a fully decentralized ecosystem with native token and market,</li>
+        <li>temporary configurable data storage,</li>
+    </ul>
+    <p>
+        It is a fork of Autonomi Network to create a complementary additional
+        ecosystem able to tap both the Autonomi network and StorPunk network for
+        permanent and temporary data simultaneously.
+    </p>
+    <p>
+        By emphasizing temporary data, StorPunk addresses market gaps, reduces
+        network risks, and provides sustainable incentives through market-driven
+        pricing.
+    </p>
+
+    <h4>Key Value Propositions:</h4>
+    <ul>
+        <li>
+            <strong>Temporary Storage Model</strong>: Configurable data
+            retention prevents bloat and potential cascade failures.
+        </li>
+        <li>
+            <strong>Sustainable Funding</strong>: 5-year tiered token sale with
+            hold-to-double rewards and soulbound governance.
+        </li>
+        <li>
+            <strong>Dual-Network Support</strong>: Clients access both StorPunk
+            (temporary) and Autonomi (permanent) networks.
+        </li>
+        <li>
+            <strong>Integrated Exchange</strong>: Built-in trading for multiple
+            currencies, leveraging MetaMask integration.
+        </li>
+        <li>
+            <strong>Market-Driven Economics</strong>: Pure supply-demand pricing
+            without artificial rewards.
+        </li>
+    </ul>
+
+    <h4>Target Market:</h4>
+    <ul>
+        <li>
+            Users needing censorship resistance or otherwise fully decentralized
+            temporary cloud storage alternatives.
+        </li>
+        <li>Developers building apps with ephemeral data requirements.</li>
+        <li>Node operators seeking sustainable incentives.</li>
+        <li>Long-term investors in decentralized infrastructure.</li>
+    </ul>
+
+    <h3>2. Introduction and Vision</h3>
+
+    <h4>2.1 The Problems with Autonomi's vision</h4>
+    <p>
+        While Autonomi provides innovative permanent storage, it faces
+        challenges including potential network bloat, cascade collapse risks,
+        and a focus on a narrower market. StorPunk addresses these by
+        specializing in temporary storage, creating a complementary rather than
+        competitive solution.
+    </p>
+
+    <h4>2.2 StorPunk's alternative Vision</h4>
+    <p>
+        StorPunk envisions a resilient, user-controlled storage network where
+        data lives only as long as needed. Funded through a fair, long-term DAO
+        model, it builds a sustainable ecosystem that rewards commitment while
+        maintaining flexibility.
+    </p>
+
+    <h4>2.3 CyberPunk Principles</h4>
+    <p>
+        Inspired by cyberpunk ethos, StorPunk emphasizes decentralization,
+        privacy, and resistance to central control, creating a network where
+        users truly own their data destiny.
+    </p>
+    <p>
+        Central to this vision is StorPunk's strong censorship resistance,
+        making it an ideal platform in an era where many countries are
+        increasingly censoring political websites and online content. By
+        distributing data across a global network of independent nodes with no
+        central authority, StorPunk ensures that information remains accessible
+        and uncensorable, empowering users to share and store data freely
+        without fear of shutdown or interference.
+    </p>
+
+    <h3>3. Technical Architecture</h3>
+
+    <h4>3.1 Network Overview</h4>
+    <p>
+        StorPunk forks Autonomi for core functionality while adding temporary
+        data handling and dual-network support. The network consists of storage
+        nodes, clients, and an integrated exchange layer.
+    </p>
+    <p>
+        StorPunk's dual-network client allows users to seamlessly access and
+        manage data on both StorPunk (for temporary storage) and Autonomi (for
+        permanent storage) networks from a single interface. This provides free,
+        unified access to both temporary and permanent data types, enhancing
+        usability while leveraging the strengths of each network without
+        additional costs or complexity.
+    </p>
+
+    <h4>3.2 Temporary Data Model</h4>
+    <p>
+        Users specify retention periods; nodes price based on duration and
+        capacity. Expired data is automatically discarded during rotation
+        cycles, preventing bloat.
+    </p>
+
+    <h4>3.3 Node Architecture</h4>
+    <p>
+        Nodes handle storage, replication, and exchange functions. Market-based
+        pricing adjusts dynamically based on utilization.
+    </p>
+
+    <h4>3.4 Native Token Integration</h4>
+    <p>
+        $PUNK (native token) powers network operations including storage fees
+        and transactions. $PUNK-DAO (ERC-20) handles governance via Ethereum.
+    </p>
+
+    <h4>3.5 Decentralized Exchange Layer</h4>
+    <p>
+        Supports trading of WBTC, USDT, PAXG, ETH, ANT, $PUNK, and $PUNK-DAO.
+        Integrates with MetaMask for secure, low-maintenance operations.
+    </p>
+
+    <h3>4. Token Economics and Governance</h3>
+
+    <h4>4.1 Market-Driven Pricing Model</h4>
+    <p><strong>Storage Pricing Mechanism:</strong></p>
+    <p>
+        StorPunk adopts Autonomi's proven supply-and-demand pricing mechanism,
+        adapted for temporary data storage:
+    </p>
+    <ul>
+        <li>
+            <strong>Node-Based Pricing</strong>: Each storage node assesses its
+            internal resource availability to calculate pricing
+        </li>
+        <li>
+            <strong>Capacity Assessment</strong>: Nodes compare their current
+            storage load against maximum capacity
+        </li>
+        <li>
+            <strong>Supply-Demand Balance</strong>: Pricing reflects the ratio
+            between total available nodes (supply) and total storage requests
+            (demand)
+        </li>
+    </ul>
+    <p><strong>Price Discovery Process:</strong></p>
+    <ol>
+        <li>Client queries network for closest nodes to data address</li>
+        <li>
+            Nodes provide storage cost quotes based on their capacity
+            utilization
+        </li>
+        <li>Client selects optimal quote and submits data with payment</li>
+        <li>
+            Node verifies payment, stores data, and replicates to close group
+        </li>
+    </ol>
+    <p><strong>Retention Period Pricing:</strong></p>
+    <ul>
+        <li>
+            <strong>Short-term Storage</strong>: Lower cost multipliers for
+            temporary data
+        </li>
+        <li>
+            <strong>Extended Retention</strong>: Graduated pricing for longer
+            storage periods
+        </li>
+        <li>
+            <strong>Market-Responsive</strong>: Pricing adjusts dynamically
+            based on network utilization and retention requirements
+        </li>
+    </ul>
+
+    <h4>4.2 Token Distribution and Supply</h4>
+    <p><strong>$PUNK-DAO Token (ERC-20):</strong></p>
+    <ul>
+        <li>
+            <strong>Total Supply</strong>: Up to 9.6M (if all tiers sell out)
+        </li>
+        <li>
+            <strong>Distribution Mechanism</strong>: Tiered sales with
+            decreasing rates
+        </li>
+        <ul>
+            <li>Tier 1: 16x $PUNK-DAO per USDT (3.2M supply)</li>
+            <li>Tier 2: 8x $PUNK-DAO per USDT (1.6M supply)</li>
+            <li>Tier 3: 4x $PUNK-DAO per USDT (1.6M supply)</li>
+            <li>Tier 4: 2x $PUNK-DAO per USDT (1.6M supply)</li>
+            <li>Tier 5: 1x $PUNK-DAO per USDT (1.6M supply)</li>
+        </ul>
+        <li>
+            <strong>Burn Mechanism</strong>: Unsold tokens burned between tiers
+        </li>
+        <li>
+            <strong>Hold-to-Double Rewards</strong>: Original holders receive 2x
+            $PUNK on claim
+        </li>
+        <li>
+            <strong>Soulbound After Claim</strong>: Tokens become
+            non-transferable, retaining governance rights
+        </li>
+    </ul>
+    <p><strong>$PUNK Native Token:</strong></p>
+    <ul>
+        <li>
+            <strong>Supply</strong>: Minted via claims from $PUNK-DAO holders
+        </li>
+        <li>
+            <strong>Utility</strong>: Network fees, storage payments,
+            transactions
+        </li>
+        <li>
+            <strong>Economics</strong>: Market-driven with no artificial
+            inflation
+        </li>
+    </ul>
+
+    <h4>4.3 Governance Structure</h4>
+    <ul>
+        <li><strong>Platform</strong>: Snapshot.org for gasless voting</li>
+        <li>
+            <strong>Voting Power</strong>: 1 token = 1 vote (pre and post-claim)
+        </li>
+        <li>
+            <strong>Multisig</strong>: Time-locked 3-of-5 for critical functions
+        </li>
+        <li>
+            <strong>Proposals</strong>: Tier adjustments, treasury management,
+            upgrades
+        </li>
+        <li>
+            <strong>Permanent Rights</strong>: Soulbound tokens ensure lifelong
+            participation
+        </li>
+        <li>
+            <strong>Transition</strong>: Governance remains on Ethereum
+            indefinitely
+        </li>
+    </ul>
+
+    <h3>5. Risk Factors and Mitigations</h3>
+
+    <h4>5.1 Technical Risks</h4>
+    <p><strong>Network Infrastructure:</strong></p>
+    <ul>
+        <li>
+            Dependency on underlying Autonomi protocol stability and continued
+            development
+        </li>
+        <li>
+            Potential network splits or consensus failures affecting data
+            availability
+        </li>
+        <li>Node churn impacting data replication and network performance</li>
+        <li>
+            Security vulnerabilities in forked codebase requiring ongoing
+            maintenance
+        </li>
+    </ul>
+    <p><strong>Temporary Data Model:</strong></p>
+    <ul>
+        <li>
+            Data expiration mechanisms must function reliably to prevent network
+            bloat
+        </li>
+        <li>Risk of premature data deletion due to system errors</li>
+        <li>Complexity of managing configurable retention periods at scale</li>
+    </ul>
+    <p><strong>Token Integration:</strong></p>
+    <ul>
+        <li>Smart contract vulnerabilities in native token implementation</li>
+        <li>Exchange layer security risks and potential exploitation</li>
+        <li>
+            Bridge service centralization (mitigated by public verification)
+        </li>
+    </ul>
+    <p><strong>Mitigations:</strong></p>
+    <ul>
+        <li>Comprehensive audits and bug bounties</li>
+        <li>Phased testnet deployments</li>
+        <li>Community-driven code reviews</li>
+        <li>Redundant bridge monitoring</li>
+    </ul>
+
+    <h4>5.2 Economic Risks</h4>
+    <p><strong>Market Dynamics:</strong></p>
+    <ul>
+        <li>
+            Token price volatility affecting network economics and user adoption
+        </li>
+        <li>
+            Insufficient node operator incentives leading to reduced network
+            capacity
+        </li>
+        <li>
+            Competition from established storage providers offering similar
+            services
+        </li>
+    </ul>
+    <p><strong>Sustainability Concerns:</strong></p>
+    <ul>
+        <li>
+            Reliance on market-driven pricing may not sustain network operations
+            long-term
+        </li>
+        <li>
+            Potential misalignment between storage costs and user willingness to
+            pay
+        </li>
+        <li>
+            Economic model dependency on continuous network growth and adoption
+        </li>
+    </ul>
+    <p><strong>Liquidity Risks:</strong></p>
+    <ul>
+        <li>
+            Limited exchange listings potentially restricting token
+            accessibility
+        </li>
+        <li>
+            Low trading volume affecting price discovery and user participation
+        </li>
+        <li>
+            Tiered sale failure to meet minimums (mitigated by refund mechanism)
+        </li>
+    </ul>
+    <p><strong>DAO-Specific Risks:</strong></p>
+    <ul>
+        <li>
+            Low tier participation (mitigated by minimum thresholds and refunds)
+        </li>
+        <li>
+            Holder fatigue over 5 years (mitigated by regular updates and
+            rewards)
+        </li>
+        <li>Governance centralization (mitigated by time-locked multisig)</li>
+    </ul>
+    <p><strong>Mitigations:</strong></p>
+    <ul>
+        <li>Conservative treasury management with 12-18 month runways</li>
+        <li>Monthly transparency reports</li>
+        <li>Hold-to-double incentives for long-term holders</li>
+        <li>Flexible tier timing</li>
+    </ul>
+
+    <h4>5.3 Competitive Risks</h4>
+    <p><strong>Market Position:</strong></p>
+    <ul>
+        <li>
+            Established permanent storage networks with larger user bases and
+            developer ecosystems
+        </li>
+        <li>
+            Traditional cloud providers offering competitive pricing and
+            reliability
+        </li>
+    </ul>
+    <p><strong>Mitigations:</strong></p>
+    <ul>
+        <li>Emphasis on dual-network client for ecosystem synergy</li>
+        <li>Focus on hardcore decentralization, well beyond other offerings</li>
+    </ul>
+
+    <h3>6. Project Phases and Milestones</h3>
+
+    <h4>6.1 Phase 1: Foundation and Community</h4>
+    <p><strong>Website and Marketing:</strong></p>
+    <ul>
+        <li>Launch comprehensive project website</li>
+        <li>Publish detailed whitepaper and technical documentation</li>
+        <li>Create social media presence and community channels</li>
+        <li>Develop brand identity and messaging strategy</li>
+    </ul>
+    <p><strong>Community Building:</strong></p>
+    <ul>
+        <li>X/Matrix/Telegram and community forum establishment</li>
+        <li>Content creation and educational materials</li>
+    </ul>
+    <p><strong>Deliverables:</strong></p>
+    <ul>
+        <li>Project website with full documentation</li>
+        <li>Whitepaper distribution to crypto publications</li>
+    </ul>
+
+    <h4>6.2 Phase 2: DAO and Token Launch</h4>
+    <p><strong>DAO Deployment:</strong></p>
+    <ul>
+        <li>Develop tiered sale contract with multisig controls</li>
+        <li>Implement soulbound mechanism and hold verification</li>
+        <li>Set up Snapshot.org for governance</li>
+    </ul>
+    <p><strong>Token Sale and Distribution:</strong></p>
+    <ul>
+        <li>Deploy ERC-20 $PUNK-DAO token</li>
+        <li>Initiate Tier 1 sale with hold-to-double incentives</li>
+        <li>Establish refund mechanism for failed tiers</li>
+        <li>Initial exchange listings and liquidity provision</li>
+    </ul>
+    <p><strong>Deliverables:</strong></p>
+    <ul>
+        <li>Fully functional DAO with governance capabilities</li>
+        <li>Successful tiered sales raising development funds</li>
+        <li>$PUNK-DAO listed on major decentralized exchanges</li>
+        <li>Treasury funded with sufficient development runway</li>
+    </ul>
+
+    <h4>6.3 Phase 3: Network Development</h4>
+    <p><strong>Core Network Implementation:</strong></p>
+    <ul>
+        <li>Autonomi Network fork and customization</li>
+        <li>Temporary data model development</li>
+        <li>Native token integration</li>
+        <li>Storage node software development and testing</li>
+    </ul>
+    <p><strong>Exchange Layer Development:</strong></p>
+    <ul>
+        <li>P2P exchange functionality implementation</li>
+        <li>Order book and matching engine deployment</li>
+    </ul>
+    <p><strong>Dual-Network Client:</strong></p>
+    <ul>
+        <li>Implement dual support for both StorPunk and Autonomi</li>
+        <li>Develop seamless switching and wallet management</li>
+    </ul>
+    <p><strong>Testing and Validation:</strong></p>
+    <ul>
+        <li>Testnet deployment and community testing</li>
+        <li>Security audits</li>
+        <li>Performance optimization and scalability testing</li>
+        <li>Node operator onboarding and training</li>
+    </ul>
+    <p><strong>Deliverables:</strong></p>
+    <ul>
+        <li>Functional testnet with substantial node participation</li>
+        <li>Security audit report</li>
+        <li>Node operator onboarding program</li>
+    </ul>
+
+    <h4>6.4 Phase 4: Mainnet Launch</h4>
+    <p><strong>Network Deployment:</strong></p>
+    <ul>
+        <li>Mainnet launch with initial node set</li>
+        <li>Token distribution and staking activation</li>
+        <li>Storage services live for public use</li>
+        <li>Exchange functionality full deployment</li>
+    </ul>
+    <p><strong>Token Claim Activation:</strong></p>
+    <ul>
+        <li>Deploy Ethereum claim contract</li>
+        <li>Activate one-way bridge for $PUNK minting</li>
+        <li>Enable hold-to-double rewards with soulbinding</li>
+    </ul>
+    <p><strong>Post-Launch Operations:</strong></p>
+    <ul>
+        <li>Network monitoring and optimization</li>
+        <li>Bug fixes and performance improvements</li>
+        <li>Node operator support and expansion</li>
+        <li>User onboarding and adoption campaigns</li>
+    </ul>
+    <p><strong>Deliverables:</strong></p>
+    <ul>
+        <li>Stable mainnet with substantial active node participation</li>
+        <li>Growing user base</li>
+    </ul>
+
+    <h4>6.5 Phase 5: Possible Future Advanced Features</h4>
+    <p><strong>Enhanced Functionality:</strong></p>
+    <ul>
+        <li>Indexing/Search capabilities</li>
+        <li>Social media layer integration</li>
+        <li>Full trading platform launch</li>
+    </ul>
+    <p><strong>Deliverables:</strong></p>
+    <ul>
+        <li>Comprehensive developer ecosystem</li>
+        <li>Successful application deployment</li>
+    </ul>
+
+    <h3>7. Glossary</h3>
+    <ul>
+        <li>
+            <strong>Soulbound Token</strong>: Non-transferable token after
+            claiming rewards
+        </li>
+        <li>
+            <strong>Hold-to-Double</strong>: 2x $PUNK reward for original
+            holders
+        </li>
+        <li>
+            <strong>Tiered Sale</strong>: Structured token distribution with
+            decreasing rates
+        </li>
+        <li>
+            <strong>Time-Locked Multisig</strong>: Delayed multi-signature
+            control mechanism
+        </li>
+        <li>
+            <strong>Snapshot.org</strong>: Gasless voting platform for DAO
+            proposals
+        </li>
+    </ul>
+
+    <h3>8. Appendix: Legal & Compliance</h3>
+
+    <h4>8.1 Regulatory Considerations</h4>
+    <p>
+        StorPunk complies with relevant securities regulations. Token sales may
+        be restricted in certain jurisdictions.
+    </p>
+
+    <h4>8.2 Legal Structure</h4>
+    <p>
+        The project operates as a DAO with decentralized governance.
+        Participants agree to terms via smart contract interactions.
+    </p>
+
+    <h4>8.3 Risk Disclosures</h4>
+    <p>
+        All investments involve risk. StorPunk is not responsible for losses due
+        to market conditions or technical failures.
+    </p>
+    <p><strong>Important Notes:</strong></p>
+    <ul>
+        <li>No guarantee of project success or token value</li>
+        <li>Development timelines subject to change</li>
+        <li>Technical specifications may evolve</li>
+        <li>Regulatory compliance may require modifications</li>
+    </ul>
+
+    <h4>8.4 Forward-Looking Statements</h4>
+    <p>
+        This whitepaper contains forward-looking statements based on current
+        expectations. Actual results may differ materially.
+    </p>
+
+    <hr />
+    <p>
+        <em
+            >This whitepaper represents the current vision and plans for
+            StorPunk as of the publication date. All information is subject to
+            change as the project develops and adapts to market conditions and
+            technological advances.</em
+        >
+    </p>
+
+    <p><strong>Contact Information:</strong></p>
+    <ul>
+        <li>Public-facing Website: [Coming Soon]</li>
+        <li>Community: [X/Matrix/Telegram links to be added]</li>
+        <li>Technical Documentation: [Repository links to be added]</li>
+        <li>Governance: [DAO platform links to be added]</li>
+    </ul>
+
+    <hr />
+    <p><strong>Document Version</strong>: 2.5 Draft</p>
+    <p><strong>Last Updated</strong>: [31 July 2025]</p>
+    <p>
+        <strong>Next Review</strong>: [To be determined based on development
+        progress]
+    </p>
+</section>
+</main>
+<footer>
+    <div class="container">
+        <p>StorPunk - Decentralized Storage with a Cyberpunk Edge</p>
+        <p>Forked from Autonomi Network</p>
+        <p>&copy; <span id="currentYear"></span> StorPunk Project</p>
+    </div>
+</footer>
+<script>
+// StorPunk website navigation script
+
+// Function to handle section switching
+function showSection(sectionId) {
+  // Hide all content sections
+  const sections = document.querySelectorAll(".content-section");
+  sections.forEach((section) => {
+    section.classList.remove("active");
+  });
+
+  // Show the selected section
+  const selectedSection = document.getElementById(sectionId);
+  if (selectedSection) {
+    selectedSection.classList.add("active");
+  }
+
+  // Scroll to the top of the page smoothly
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+
+  // Update active state in navigation
+  const navLinks = document.querySelectorAll("nav ul li a");
+  navLinks.forEach((link) => {
+    // Remove any styling that might indicate active state
+    link.classList.remove("active");
+
+    // Add active class to the clicked link
+    if (link.getAttribute("onclick").includes(sectionId)) {
+      link.classList.add("active");
+    }
+  });
+}
+
+// Create the code rain animation
+function createCodeRain() {
+  const codeRain = document.getElementById("codeRain");
+  const characters = "01";
+  const fontSize = 14;
+
+  if (!codeRain) return;
+
+  // Calculate how many columns we need
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const columns = Math.floor(width / fontSize);
+
+  // Create initial drops
+  let drops = [];
+  for (let i = 0; i < columns; i++) {
+    drops[i] = Math.floor((Math.random() * height) / fontSize);
+  }
+
+  // Create the animation
+  function drawRain() {
+    let html = "";
+
+    for (let i = 0; i < drops.length; i++) {
+      // Random character
+      const char = characters.charAt(
+        Math.floor(Math.random() * characters.length),
+      );
+
+      // Calculate position
+      const x = i * fontSize;
+      const y = drops[i] * fontSize;
+
+      // Create span with random opacity
+      const opacity = Math.random() * 0.5 + 0.3;
+      html += `<span style="position:absolute; left:${x}px; top:${y}px; color:#00ff00; opacity:${opacity};">${char}</span>`;
+
+      // Move drop down
+      drops[i]++;
+
+      // Reset drop position if it's off screen
+      if (drops[i] * fontSize > height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+    }
+
+    codeRain.innerHTML = html;
+    setTimeout(drawRain, 100);
+  }
+
+  drawRain();
+}
+
+// Initialize everything when the page loads
+window.onload = function () {
+  // Set the current year in the footer
+  const currentYearElement = document.getElementById("currentYear");
+  if (currentYearElement) {
+    currentYearElement.textContent = new Date().getFullYear();
+  }
+
+  // Create FAQ functionality
+  const faqQuestions = document.querySelectorAll(".faq-question");
+  faqQuestions.forEach((question) => {
+    question.addEventListener("click", function () {
+      // Toggle active class on the question
+      this.classList.toggle("active");
+
+      // Toggle active class on the answer
+      const answer = this.nextElementSibling;
+      if (answer && answer.classList.contains("faq-answer")) {
+        answer.classList.toggle("active");
+      }
+    });
+  });
+
+  // Initialize code rain animation
+  createCodeRain();
+
+  // Show the introduction section by default
+  showSection("introduction");
+};
+
+// Display current time in Eastern Australia (Sydney timezone)
+function updateCurrentTime() {
+  const now = new Date();
+  const dateStr = now.toLocaleDateString("en-AU", {
+    timeZone: "Australia/Sydney",
+    weekday: "short",
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+
+  const timeStr = now.toLocaleTimeString("en-AU", {
+    timeZone: "Australia/Sydney",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+
+  const tz = now
+    .toLocaleTimeString("en-AU", {
+      timeZone: "Australia/Sydney",
+      timeZoneName: "short",
+    })
+    .split(" ")
+    .pop();
+
+  // comma + normal space + zero-width space
+  const final = `${dateStr},&#32;&#8203;${timeStr} ${tz}`;
+
+  const el = document.getElementById("current-time");
+  if (el) el.innerHTML = final;
+}
+
+setInterval(updateCurrentTime, 1000);
+updateCurrentTime();
+</script>
+</body>
+</html>

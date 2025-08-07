@@ -5,68 +5,106 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>StorPunk - Site Maintenance</title>
         <style>
-            body {
-                font-family: "Courier New", monospace;
-                background-color: #0d1117;
-                color: #c9d1d9;
+            /* CSS Variables for Easy Color Management */
+            :root {
+                /* Primary Colors - Cool Cyberpunk Theme */
+                --primary-bg: #080818; /* Deep blue-black background */
+                --secondary-bg: #141929; /* Slightly lighter background */
+                --card-bg: #1a1f33; /* Card/panel background */
+                --border-dark: #2a3247; /* Dark border color */
+
+                /* Text Colors */
+                --text-primary: #c4d0c2; /* Light blue-gray for main text */
+                --text-accent: #00e4e4; /* Cyan accent (less intense than green) */
+                --text-highlight: #e4d162; /* Warm amber for highlights */
+                --text-secondary: #7badb3; /* Muted blue-gray for secondary text */
+
+                /* Interactive Elements */
+                --link-color: #4de3cc; /* Sky blue for links */
+                --link-hover: #6af6ed; /* Lighter blue on hover */
+                --button-bg: #1e293b; /* Dark slate for buttons */
+                --button-border: #38bdf8; /* Bright blue border */
+                --button-hover-bg: #334155; /* Lighter slate on hover */
+
+                /* Special Effects */
+                --glow-color: rgba(56, 189, 248, 0.3); /* Blue glow effect */
+                --shadow-color: rgba(0, 212, 255, 0.2); /* Cyan shadow */
+                --text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8); /* Black text shadow */
+
+                /* Fonts */
+                --font-primary: "Courier New", monospace;
+                --font-secondary: "Consolas", "Monaco", monospace;
+            }
+
+            /* General Structure */
+            * {
                 margin: 0;
                 padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: var(--font-primary);
+                background-color: var(--primary-bg);
+                color: var(--text-primary);
+                line-height: 1.6;
+                text-shadow: var(--text-shadow);
+                position: relative;
+                overflow-x: hidden;
+                min-height: 100vh;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                min-height: 100vh;
-                text-align: center;
             }
 
             .container {
-                max-width: 600px;
+                max-width: 800px;
+                margin: 0 auto;
                 padding: 40px;
-                background-color: #161b22;
-                border: 2px solid #30363d;
+                position: relative;
+                z-index: 100;
+            }
+
+            .maintenance-card {
+                background-color: var(--card-bg);
+                border: 2px solid var(--border-dark);
                 border-radius: 10px;
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                padding: 40px;
+                text-align: center;
+                box-shadow: 0 0 20px var(--glow-color);
+                position: relative;
             }
 
             .logo {
-                font-size: 2.5em;
+                font-size: 2.5rem;
                 font-weight: bold;
-                color: #58a6ff;
-                margin-bottom: 20px;
-                text-shadow: 0 0 10px rgba(88, 166, 255, 0.3);
+                color: var(--text-accent);
+                text-shadow: var(--text-shadow);
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                margin-bottom: 10px;
             }
 
             .subtitle {
-                font-size: 1.2em;
-                color: #7c3aed;
+                font-size: 1.2rem;
+                color: var(--text-highlight);
                 margin-bottom: 30px;
                 font-style: italic;
+                text-shadow: var(--text-shadow);
             }
 
             .maintenance-icon {
-                font-size: 4em;
+                font-size: 4rem;
                 margin: 20px 0;
-                color: #f85149;
-            }
-
-            .message {
-                font-size: 1.1em;
-                line-height: 1.6;
-                margin-bottom: 20px;
-            }
-
-            .details {
-                font-size: 0.9em;
-                color: #8b949e;
-                margin-top: 30px;
-                border-top: 1px solid #30363d;
-                padding-top: 20px;
+                color: var(--text-accent);
+                text-shadow: 0 0 10px var(--glow-color);
             }
 
             .status-indicator {
                 display: inline-block;
                 width: 12px;
                 height: 12px;
-                background-color: #f85149;
+                background-color: var(--text-accent);
                 border-radius: 50%;
                 margin-right: 8px;
                 animation: pulse 2s infinite;
@@ -75,58 +113,347 @@
             @keyframes pulse {
                 0% {
                     opacity: 1;
+                    transform: scale(1);
                 }
                 50% {
                     opacity: 0.5;
+                    transform: scale(1.1);
                 }
                 100% {
                     opacity: 1;
+                    transform: scale(1);
                 }
             }
 
-            .footer {
+            .main-message {
+                font-size: 1.3rem;
+                margin: 20px 0;
+                color: var(--text-primary);
+                text-shadow: var(--text-shadow);
+            }
+
+            .sub-message {
+                font-size: 1.1rem;
+                margin: 20px 0;
+                color: var(--text-primary);
+                text-shadow: var(--text-shadow);
+            }
+
+            .details-section {
+                margin: 30px 0;
+                padding: 20px;
+                background-color: var(--secondary-bg);
+                border-left: 3px solid var(--text-accent);
+                text-align: left;
+            }
+
+            .details-section h3 {
+                color: var(--text-highlight);
+                margin-bottom: 15px;
+                text-shadow: var(--text-shadow);
+            }
+
+            .details-list {
+                list-style: none;
+                padding: 0;
+            }
+
+            .details-list li {
+                margin: 10px 0;
+                padding-left: 20px;
+                position: relative;
+                color: var(--text-primary);
+                text-shadow: var(--text-shadow);
+            }
+
+            .details-list li::before {
+                content: "▶";
+                position: absolute;
+                left: 0;
+                color: var(--text-accent);
+            }
+
+            .current-time {
+                margin-top: 30px;
+                padding: 15px;
+                font-size: 0.9rem;
+                text-align: center;
+                color: var(--text-secondary);
+                font-family: var(--font-secondary);
+                border-top: 1px solid var(--border-dark);
+                white-space: pre-line;
+                word-break: break-word;
+            }
+
+            .footer-info {
                 margin-top: 40px;
-                font-size: 0.8em;
-                color: #6e7681;
+                font-size: 0.9rem;
+                color: var(--text-secondary);
+                border-top: 1px solid var(--border-dark);
+                padding-top: 20px;
+            }
+
+            .footer-info p {
+                margin: 5px 0;
+            }
+
+            .eta {
+                color: var(--text-highlight);
+                font-weight: bold;
+                text-shadow: var(--text-shadow);
+            }
+
+            /* Code Rain Effect */
+            .code-rain {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: -1;
+                opacity: 0.3;
+                background-color: rgba(10, 14, 26, 0.85);
+            }
+
+            /* Animation */
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .maintenance-card {
+                animation: fadeIn 1s ease-in;
+            }
+
+            /* Responsive Design */
+            @media screen and (max-width: 768px) {
+                .container {
+                    padding: 20px;
+                }
+
+                .maintenance-card {
+                    padding: 25px;
+                }
+
+                .logo {
+                    font-size: 2rem;
+                }
+
+                .subtitle {
+                    font-size: 1rem;
+                }
+
+                .maintenance-icon {
+                    font-size: 3rem;
+                }
+
+                .main-message {
+                    font-size: 1.1rem;
+                }
+
+                .sub-message {
+                    font-size: 1rem;
+                }
             }
         </style>
     </head>
     <body>
+        <!-- Code Rain Background -->
+        <div id="codeRain" class="code-rain"></div>
+
         <div class="container">
-            <div class="logo">StorPunk</div>
-            <div class="subtitle">Digital Storage Revolution</div>
+            <div class="maintenance-card">
+                <div class="logo">StorPunk</div>
+                <div class="subtitle">Digital Storage Revolution</div>
 
-            <div class="maintenance-icon">🔧</div>
+                <div class="maintenance-icon">⚡</div>
 
-            <div class="message">
-                <span class="status-indicator"></span>
-                <strong>Site Under Maintenance</strong>
-            </div>
+                <div class="main-message">
+                    <span class="status-indicator"></span>
+                    <strong>System Under Maintenance</strong>
+                </div>
 
-            <div class="message">
-                We're currently performing scheduled maintenance to improve your
-                experience.
-                <br />
-                Our systems will be back online shortly.
-            </div>
+                <div class="sub-message">
+                    We're currently performing scheduled system upgrades to
+                    enhance your StorPunk experience.
+                    <br />
+                    Our digital infrastructure will be back online shortly.
+                </div>
 
-            <div class="details">
-                <p><strong>What's happening?</strong></p>
-                <p>
-                    We're upgrading our infrastructure to serve you better. This
-                    includes:
-                </p>
-                <ul style="text-align: left; display: inline-block">
-                    <li>System optimizations</li>
-                    <li>Security enhancements</li>
-                    <li>Performance improvements</li>
-                </ul>
-            </div>
+                <div class="details-section">
+                    <h3>Current Operations:</h3>
+                    <ul class="details-list">
+                        <li>Optimizing storage protocols</li>
+                        <li>Upgrading security frameworks</li>
+                        <li>Enhancing data transmission speeds</li>
+                        <li>Implementing next-gen encryption</li>
+                    </ul>
+                </div>
 
-            <div class="footer">
-                <p>Thank you for your patience.</p>
-                <p>Expected completion: Soon™</p>
+                <div class="details-section">
+                    <h3>System Status:</h3>
+                    <p>
+                        All core systems are temporarily offline while we deploy
+                        critical updates to improve performance, security, and
+                        reliability. No data will be affected during this
+                        maintenance window.
+                    </p>
+                </div>
+
+                <div class="current-time">
+                    <strong>Current System Time:</strong><br />
+                    <span id="current-time"></span>
+                </div>
+
+                <div class="footer-info">
+                    <p>
+                        Thank you for your patience while we enhance the
+                        StorPunk infrastructure.
+                    </p>
+                    <p class="eta">
+                        Expected completion: <span class="eta">Soon™</span>
+                    </p>
+                    <p>
+                        <em
+                            >// Revolutionizing digital storage, one byte at a
+                            time</em
+                        >
+                    </p>
+                </div>
             </div>
         </div>
+
+        <script>
+            // Create the code rain animation
+            function createCodeRain() {
+                const codeRain = document.getElementById("codeRain");
+                const characters = "01";
+                const fontSize = 14;
+
+                if (!codeRain) return;
+
+                // Calculate how many columns we need
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+                const columns = Math.floor(width / fontSize);
+
+                // Create initial drops
+                let drops = [];
+                for (let i = 0; i < columns; i++) {
+                    drops[i] = Math.floor((Math.random() * height) / fontSize);
+                }
+
+                // Create the animation
+                function drawRain() {
+                    let html = "";
+
+                    for (let i = 0; i < drops.length; i++) {
+                        // Random character
+                        const char = characters.charAt(
+                            Math.floor(Math.random() * characters.length),
+                        );
+
+                        // Calculate position
+                        const x = i * fontSize;
+                        const y = drops[i] * fontSize;
+
+                        // Create span with random opacity and color
+                        const opacity = Math.random() * 0.5 + 0.2;
+                        const color =
+                            Math.random() > 0.7 ? "#00e4e4" : "#4de3cc"; // Mix of accent colors
+                        html += `<span style="position:absolute; left:${x}px; top:${y}px; color:${color}; opacity:${opacity}; font-family: 'Courier New', monospace;">${char}</span>`;
+
+                        // Move drop down
+                        drops[i]++;
+
+                        // Reset drop position if it's off screen
+                        if (
+                            drops[i] * fontSize > height &&
+                            Math.random() > 0.975
+                        ) {
+                            drops[i] = 0;
+                        }
+                    }
+
+                    codeRain.innerHTML = html;
+                    setTimeout(drawRain, 150); // Slightly slower for maintenance mood
+                }
+
+                drawRain();
+            }
+
+            // Display current time in Eastern Australia (Sydney timezone)
+            function updateCurrentTime() {
+                const now = new Date();
+                const dateStr = now.toLocaleDateString("en-AU", {
+                    timeZone: "Australia/Sydney",
+                    weekday: "short",
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                });
+
+                const timeStr = now.toLocaleTimeString("en-AU", {
+                    timeZone: "Australia/Sydney",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                    hour12: false,
+                });
+
+                const tz = now
+                    .toLocaleTimeString("en-AU", {
+                        timeZone: "Australia/Sydney",
+                        timeZoneName: "short",
+                    })
+                    .split(" ")
+                    .pop();
+
+                // comma + normal space + zero-width space
+                const final = `${dateStr},&#32;&#8203;${timeStr} ${tz}`;
+
+                const el = document.getElementById("current-time");
+                if (el) el.innerHTML = final;
+            }
+
+            // Initialize everything when the page loads
+            window.onload = function () {
+                // Initialize code rain animation
+                createCodeRain();
+
+                // Start time updates
+                updateCurrentTime();
+                setInterval(updateCurrentTime, 1000);
+
+                // Handle window resize for code rain
+                window.addEventListener("resize", function () {
+                    setTimeout(createCodeRain, 100);
+                });
+            };
+
+            // Add some interactive elements
+            document.addEventListener("DOMContentLoaded", function () {
+                // Add subtle glow effect on hover for the maintenance card
+                const card = document.querySelector(".maintenance-card");
+                if (card) {
+                    card.addEventListener("mouseenter", function () {
+                        this.style.boxShadow =
+                            "0 0 30px rgba(56, 189, 248, 0.5)";
+                    });
+
+                    card.addEventListener("mouseleave", function () {
+                        this.style.boxShadow =
+                            "0 0 20px rgba(56, 189, 248, 0.3)";
+                    });
+                }
+            });
+        </script>
     </body>
 </html>

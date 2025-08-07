@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>StorPunk - Site Maintenance</title>
+        <title>StorPunk - Website Coming Soon</title>
         <style>
             /* CSS Variables for Easy Color Management */
             :root {
@@ -58,14 +58,14 @@
             }
 
             .container {
-                max-width: 800px;
+                max-width: 900px;
                 margin: 0 auto;
                 padding: 40px;
                 position: relative;
                 z-index: 100;
             }
 
-            .maintenance-card {
+            .coming-soon-card {
                 background-color: var(--card-bg);
                 border: 2px solid var(--border-dark);
                 border-radius: 10px;
@@ -76,35 +76,62 @@
             }
 
             .logo {
-                font-size: 2.5rem;
+                font-size: 3rem;
                 font-weight: bold;
                 color: var(--text-accent);
                 text-shadow: var(--text-shadow);
                 text-transform: uppercase;
-                letter-spacing: 2px;
+                letter-spacing: 3px;
                 margin-bottom: 10px;
+                animation: glow-pulse 3s ease-in-out infinite;
+            }
+
+            @keyframes glow-pulse {
+                0%,
+                100% {
+                    text-shadow:
+                        var(--text-shadow),
+                        0 0 10px var(--glow-color);
+                }
+                50% {
+                    text-shadow:
+                        var(--text-shadow),
+                        0 0 20px var(--glow-color),
+                        0 0 30px var(--glow-color);
+                }
             }
 
             .subtitle {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
                 color: var(--text-highlight);
                 margin-bottom: 30px;
                 font-style: italic;
                 text-shadow: var(--text-shadow);
             }
 
-            .maintenance-icon {
+            .coming-soon-icon {
                 font-size: 4rem;
                 margin: 20px 0;
                 color: var(--text-accent);
-                text-shadow: 0 0 10px var(--glow-color);
+                text-shadow: 0 0 15px var(--glow-color);
+                animation: float 4s ease-in-out infinite;
+            }
+
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
             }
 
             .status-indicator {
                 display: inline-block;
                 width: 12px;
                 height: 12px;
-                background-color: var(--text-accent);
+                background-color: var(--text-highlight);
                 border-radius: 50%;
                 margin-right: 8px;
                 animation: pulse 2s infinite;
@@ -116,8 +143,8 @@
                     transform: scale(1);
                 }
                 50% {
-                    opacity: 0.5;
-                    transform: scale(1.1);
+                    opacity: 0.6;
+                    transform: scale(1.2);
                 }
                 100% {
                     opacity: 1;
@@ -126,51 +153,82 @@
             }
 
             .main-message {
-                font-size: 1.3rem;
-                margin: 20px 0;
+                font-size: 1.5rem;
+                margin: 25px 0;
                 color: var(--text-primary);
                 text-shadow: var(--text-shadow);
             }
 
             .sub-message {
-                font-size: 1.1rem;
-                margin: 20px 0;
+                font-size: 1.2rem;
+                margin: 25px 0;
                 color: var(--text-primary);
                 text-shadow: var(--text-shadow);
+                line-height: 1.8;
             }
 
-            .details-section {
+            .preview-section {
                 margin: 30px 0;
-                padding: 20px;
+                padding: 25px;
                 background-color: var(--secondary-bg);
                 border-left: 3px solid var(--text-accent);
                 text-align: left;
             }
 
-            .details-section h3 {
+            .preview-section h3 {
                 color: var(--text-highlight);
                 margin-bottom: 15px;
                 text-shadow: var(--text-shadow);
+                text-align: center;
             }
 
-            .details-list {
+            .preview-list {
                 list-style: none;
                 padding: 0;
             }
 
-            .details-list li {
-                margin: 10px 0;
-                padding-left: 20px;
+            .preview-list li {
+                margin: 12px 0;
+                padding-left: 25px;
                 position: relative;
                 color: var(--text-primary);
                 text-shadow: var(--text-shadow);
             }
 
-            .details-list li::before {
-                content: "▶";
+            .preview-list li::before {
+                content: "◉";
                 position: absolute;
                 left: 0;
                 color: var(--text-accent);
+                animation: twinkle 2s ease-in-out infinite;
+            }
+
+            @keyframes twinkle {
+                0%,
+                100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.5;
+                }
+            }
+
+            .launch-teaser {
+                margin: 30px 0;
+                padding: 20px;
+                background: linear-gradient(
+                    45deg,
+                    var(--secondary-bg),
+                    var(--card-bg)
+                );
+                border: 1px solid var(--border-dark);
+                border-radius: 8px;
+            }
+
+            .launch-teaser h3 {
+                color: var(--text-highlight);
+                margin-bottom: 15px;
+                text-shadow: var(--text-shadow);
             }
 
             .current-time {
@@ -194,7 +252,7 @@
             }
 
             .footer-info p {
-                margin: 5px 0;
+                margin: 8px 0;
             }
 
             .eta {
@@ -212,7 +270,7 @@
                 height: 100%;
                 pointer-events: none;
                 z-index: -1;
-                opacity: 0.3;
+                opacity: 0.25;
                 background-color: rgba(10, 14, 26, 0.85);
             }
 
@@ -220,7 +278,7 @@
             @keyframes fadeIn {
                 from {
                     opacity: 0;
-                    transform: translateY(20px);
+                    transform: translateY(30px);
                 }
                 to {
                     opacity: 1;
@@ -228,8 +286,8 @@
                 }
             }
 
-            .maintenance-card {
-                animation: fadeIn 1s ease-in;
+            .coming-soon-card {
+                animation: fadeIn 1.2s ease-in;
             }
 
             /* Responsive Design */
@@ -238,24 +296,25 @@
                     padding: 20px;
                 }
 
-                .maintenance-card {
+                .coming-soon-card {
                     padding: 25px;
                 }
 
                 .logo {
-                    font-size: 2rem;
+                    font-size: 2.2rem;
+                    letter-spacing: 2px;
                 }
 
                 .subtitle {
-                    font-size: 1rem;
+                    font-size: 1.1rem;
                 }
 
-                .maintenance-icon {
+                .coming-soon-icon {
                     font-size: 3rem;
                 }
 
                 .main-message {
-                    font-size: 1.1rem;
+                    font-size: 1.2rem;
                 }
 
                 .sub-message {
@@ -269,61 +328,72 @@
         <div id="codeRain" class="code-rain"></div>
 
         <div class="container">
-            <div class="maintenance-card">
+            <div class="coming-soon-card">
                 <div class="logo">StorPunk</div>
                 <div class="subtitle">Digital Storage Revolution</div>
 
-                <div class="maintenance-icon">⚡</div>
+                <div class="coming-soon-icon">🚀</div>
 
                 <div class="main-message">
                     <span class="status-indicator"></span>
-                    <strong>System Under Maintenance</strong>
+                    <strong>Project Website Coming Soon</strong>
                 </div>
 
                 <div class="sub-message">
-                    We're currently performing scheduled system upgrades to
-                    enhance your StorPunk experience.
+                    The official StorPunk project website is currently under
+                    construction.
                     <br />
-                    Our digital infrastructure will be back online shortly.
+                    Complete project documentation, roadmaps, and technical
+                    details will be available here soon.
                 </div>
 
-                <div class="details-section">
-                    <h3>Current Operations:</h3>
-                    <ul class="details-list">
-                        <li>Optimizing storage protocols</li>
-                        <li>Upgrading security frameworks</li>
-                        <li>Enhancing data transmission speeds</li>
-                        <li>Implementing next-gen encryption</li>
+                <div class="preview-section">
+                    <h3>Website Will Feature:</h3>
+                    <ul class="preview-list">
+                        <li>Comprehensive project documentation</li>
+                        <li>Development roadmap and milestones</li>
+                        <li>Technical specifications and architecture</li>
+                        <li>Community resources and contact information</li>
+                        <li>Latest project updates and announcements</li>
                     </ul>
                 </div>
 
-                <div class="details-section">
-                    <h3>System Status:</h3>
+                <div class="launch-teaser">
+                    <h3>What is StorPunk?</h3>
                     <p>
-                        All core systems are temporarily offline while we deploy
-                        critical updates to improve performance, security, and
-                        reliability. No data will be affected during this
-                        maintenance window.
+                        StorPunk is a revolutionary approach to digital storage
+                        technology, designed to transform how we think about
+                        data management, accessibility, and security. The
+                        complete project details and technical information will
+                        be revealed when this website launches.
+                    </p>
+                </div>
+
+                <div class="preview-section">
+                    <h3>Current Status:</h3>
+                    <p>
+                        The StorPunk project is in active development. This
+                        website is being crafted to provide you with
+                        comprehensive information about the project, its goals,
+                        technical approach, and development progress. Stay tuned
+                        for the full reveal!
                     </p>
                 </div>
 
                 <div class="current-time">
-                    <strong>Current System Time:</strong><br />
+                    <strong>Current Time:</strong><br />
                     <span id="current-time"></span>
                 </div>
 
                 <div class="footer-info">
-                    <p>
-                        Thank you for your patience while we enhance the
-                        StorPunk infrastructure.
-                    </p>
+                    <p>Thank you for your interest in the StorPunk project.</p>
                     <p class="eta">
-                        Expected completion: <span class="eta">Soon™</span>
+                        Website launch: <span class="eta">Soon™</span>
                     </p>
                     <p>
                         <em
-                            >// Revolutionizing digital storage, one byte at a
-                            time</em
+                            >// Building the future of digital storage - website
+                            launching soon</em
                         >
                     </p>
                 </div>
@@ -365,9 +435,9 @@
                         const y = drops[i] * fontSize;
 
                         // Create span with random opacity and color
-                        const opacity = Math.random() * 0.5 + 0.2;
+                        const opacity = Math.random() * 0.4 + 0.2;
                         const color =
-                            Math.random() > 0.7 ? "#00e4e4" : "#4de3cc"; // Mix of accent colors
+                            Math.random() > 0.6 ? "#00e4e4" : "#4de3cc"; // Mix of accent colors
                         html += `<span style="position:absolute; left:${x}px; top:${y}px; color:${color}; opacity:${opacity}; font-family: 'Courier New', monospace;">${char}</span>`;
 
                         // Move drop down
@@ -376,14 +446,14 @@
                         // Reset drop position if it's off screen
                         if (
                             drops[i] * fontSize > height &&
-                            Math.random() > 0.975
+                            Math.random() > 0.98
                         ) {
                             drops[i] = 0;
                         }
                     }
 
                     codeRain.innerHTML = html;
-                    setTimeout(drawRain, 150); // Slightly slower for maintenance mood
+                    setTimeout(drawRain, 120); // Moderate speed for anticipation mood
                 }
 
                 drawRain();
@@ -440,8 +510,8 @@
 
             // Add some interactive elements
             document.addEventListener("DOMContentLoaded", function () {
-                // Add subtle glow effect on hover for the maintenance card
-                const card = document.querySelector(".maintenance-card");
+                // Add subtle glow effect on hover for the coming soon card
+                const card = document.querySelector(".coming-soon-card");
                 if (card) {
                     card.addEventListener("mouseenter", function () {
                         this.style.boxShadow =
@@ -451,6 +521,17 @@
                     card.addEventListener("mouseleave", function () {
                         this.style.boxShadow =
                             "0 0 20px rgba(56, 189, 248, 0.3)";
+                    });
+                }
+
+                // Add click effect to status indicator
+                const indicator = document.querySelector(".status-indicator");
+                if (indicator) {
+                    indicator.addEventListener("click", function () {
+                        this.style.animation = "none";
+                        setTimeout(() => {
+                            this.style.animation = "pulse 2s infinite";
+                        }, 10);
                     });
                 }
             });

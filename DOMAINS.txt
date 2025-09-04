@@ -1,0 +1,63 @@
+# StorPunk Domain Configuration
+# ============================
+
+## Primary Domain
+storpunk.io
+- Main website domain
+- All canonical URLs point here
+- Primary SEO focus
+- HTTPS: https://storpunk.io/
+
+## Owned Domains with Redirects
+storepunk.com
+- Permanent redirect (301) to https://storpunk.io/
+- Alternative spelling variant
+
+storpunk.com
+- Permanent redirect (301) to https://storpunk.io/
+- Primary alternative domain
+
+storpunk.net
+- Permanent redirect (301) to https://storpunk.io/
+- Network TLD variant
+
+storpunk.org
+- Permanent redirect (301) to https://storpunk.io/
+- Organization TLD variant
+
+## Tor Hidden Service
+roiy357xbbf53w4ens45gv4wqfxkkibpuj5tgkvsirhy6sjoprfrnwqd.onion
+- Full URL: http://roiy357xbbf53w4ens45gv4wqfxkkibpuj5tgkvsirhy6sjoprfrnwqd.onion/
+- Privacy-focused access via Tor browser
+- Complete site functionality available
+- Onion-Location headers automatically redirect Tor users
+- No HTTPS needed (Tor provides encryption)
+
+## SEO Configuration Notes
+- All meta tags, sitemaps, and structured data use storpunk.io
+- Canonical URLs point to storpunk.io
+- Social media sharing configured for storpunk.io
+- RSS feeds reference storpunk.io
+- Robots.txt configured for storpunk.io
+
+## SSL/TLS
+- storpunk.io: HTTPS required and configured
+- storepunk.com: HTTPS redirect to storpunk.io
+- storpunk.com: HTTPS redirect to storpunk.io
+- storpunk.net: HTTPS redirect to storpunk.io
+- storpunk.org: HTTPS redirect to storpunk.io
+- .onion: No SSL needed (Tor provides encryption)
+
+## DNS Configuration Required
+For redirect domains (storepunk.com, storpunk.com, storpunk.net, storpunk.org):
+1. A record pointing to same IP as storpunk.io
+2. Server-level 301 redirects configured
+3. SSL certificates installed for HTTPS redirects
+
+## Brand Protection Strategy
+- Multiple TLD variants owned to prevent cybersquatting
+- Alternative spellings secured (storepunk.com)
+- All redirects maintain HTTPS security
+- Consistent branding across all properties
+
+Last Updated: September 2, 2025

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss
+    version="2.0"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+>
+    <channel>
+        <title>StorPunk Updates</title>
+        <description
+        >Latest updates from the StorPunk decentralized storage project - implementing cypherpunk, voluntaryist, and agorist principles through temporary, configurable data storage with censorship resistance and free trade capabilities.</description>
+        <link>https://storpunk.io/</link>
+        <atom:link
+            href="https://storpunk.io/feed.xml"
+            rel="self"
+            type="application/rss+xml"
+        />
+        <language>en-us</language>
+        <pubDate>Mon, 02 Sep 2025 00:00:00 +0000</pubDate>
+        <lastBuildDate>Mon, 02 Sep 2025 00:00:00 +0000</lastBuildDate>
+        <generator>StorPunk Project</generator>
+        <docs>https://www.rssboard.org/rss-specification</docs>
+        <webMaster>contact@storpunk.org (StorPunk Team)</webMaster>
+        <managingEditor>contact@storpunk.org (StorPunk Team)</managingEditor>
+        <category>Technology</category>
+        <category>Blockchain</category>
+        <category>Decentralization</category>
+        <category>Privacy</category>
+        <category>Cypherpunk</category>
+        <category>Voluntaryist</category>
+        <category>Agorist</category>
+        <category>Free Trade</category>
+        <ttl>1440</ttl>
+        <image>
+            <title>StorPunk</title>
+            <url>https://storpunk.io/images/storpunk-rss-logo.png</url>
+            <link>https://storpunk.io/</link>
+            <width>144</width>
+            <height>144</height>
+            <description
+            >StorPunk - Decentralized Storage with a Cypherpunk Edge</description>
+        </image>
+
+        <!-- Project Launch Announcement -->
+        <item>
+            <title>StorPunk Project Launch - Phase 0 Foundation Building</title>
+            <link>https://storpunk.io/#introduction</link>
+            <guid
+                isPermaLink="true"
+            >https://storpunk.io/updates/2024-12-19-project-launch</guid>
+            <description
+            >StorPunk officially launches Phase 0 with website deployment, community forum setup, and DAO development. Building cypherpunk, voluntaryist, and agorist infrastructure for decentralized temporary storage and free trade.</description>
+            <content:encoded
+            ><![CDATA[
+                <h2>StorPunk Project Official Launch</h2>
+                <p>We're excited to announce the official launch of the StorPunk project - a decentralized storage network built on cypherpunk, voluntaryist, and agorist principles of voluntary exchange and free trade.</p>
+
+                <h3>Phase 0: Foundation Building</h3>
+                <p>Our current phase focuses on:</p>
+                <ul>
+                    <li>Website and community development</li>
+                    <li>DAO constitution and governance framework</li>
+                    <li>Technical specifications and architecture planning</li>
+                    <li>Community engagement through encrypted channels</li>
+                </ul>
+
+                <h3>What Makes StorPunk Different</h3>
+                <p>StorPunk implements temporary, configurable data storage with:</p>
+                <ul>
+                    <li>User-defined data expiration periods</li>
+                    <li>Censorship-resistant architecture</li>
+                    <li>Self-custody wallet integration</li>
+                    <li>Dual-network client supporting both StorPunk and Autonomi</li>
+                    <li>Decentralized exchange capabilities</li>
+                </ul>
+
+                <p>Join our community through encrypted Retroshare channels over Tor to participate in the development process with complete privacy protection.</p>
+
+                <p><strong>Tor Hidden Service:</strong> http://roiy357xbbf53w4ens45gv4wqfxkkibpuj5tgkvsirhy6sjoprfrnwqd.onion/</p>
+
+                <p><a href="https://storpunk.io/#join-us">Learn how to join us</a> | <a href="https://storpunk.io/#roadmap">View our roadmap</a></p>
+            ]]></content:encoded>
+            <pubDate>Thu, 19 Dec 2024 00:00:00 +0000</pubDate>
+            <dc:creator>StorPunk Team</dc:creator>
+            <category>Project Updates</category>
+            <category>Launch</category>
+        </item>
+
+        <!-- Website and Documentation Release -->
+        <item>
+            <title>Complete Website and Documentation Now Available</title>
+            <link>https://storpunk.io/</link>
+            <guid
+                isPermaLink="true"
+            >https://storpunk.io/updates/2024-12-19-website-documentation</guid>
+            <description
+            >StorPunk website is now live with comprehensive documentation, whitepaper, DAO constitution, and detailed roadmap covering voluntaryist principles and free trade implementations. All materials available as both web content and downloadable PDFs, accessible via clearnet and Tor.</description>
+            <content:encoded
+            ><![CDATA[
+                <h2>Comprehensive Documentation Released</h2>
+                <p>The StorPunk project website is now fully operational with complete documentation covering all aspects of the project.</p>
+
+                <h3>Available Resources</h3>
+                <ul>
+                    <li><strong>Project Introduction:</strong> Core principles and technical overview</li>
+                    <li><strong>DAO Information:</strong> Governance structure, token economics, and tiered sale details</li>
+                    <li><strong>Why StorPunk:</strong> Cypherpunk philosophy and freedom through technology</li>
+                    <li><strong>Development Roadmap:</strong> Four-phase development plan with detailed milestones</li>
+                    <li><strong>Comprehensive FAQ:</strong> Technical and governance questions answered</li>
+                    <li><strong>DAO Constitution:</strong> Complete governance framework (PDF available)</li>
+                    <li><strong>Technical Whitepaper:</strong> In-depth technical and economic analysis (PDF available)</li>
+                </ul>
+
+                <h3>Join the Development Community</h3>
+                <p>We're actively seeking developers and contributors who share our commitment to digital sovereignty and cypherpunk principles.</p>
+
+                <p>Open positions include:</p>
+                <ul>
+                    <li>Systems Engineer Researcher Coordinator</li>
+                    <li>Lead Developer - Core Network</li>
+                    <li>Junior Developers (Networking, Storage, DEX specializations)</li>
+                </ul>
+
+                <p>All positions are remote contractor roles with competitive compensation and native token incentives, following voluntaryist principles of voluntary association and fair exchange.</p>
+
+                <p><strong>Access via Tor:</strong> http://roiy357xbbf53w4ens45gv4wqfxkkibpuj5tgkvsirhy6sjoprfrnwqd.onion/</p>
+
+                <p><a href="https://storpunk.io/storpunk-whitepaper.pdf">Download Whitepaper</a> | <a href="https://storpunk.io/storpunk-dao-constitution.pdf">Download Constitution</a></p>
+            ]]></content:encoded>
+            <pubDate>Thu, 19 Dec 2024 00:00:00 +0000</pubDate>
+            <dc:creator>StorPunk Team</dc:creator>
+            <category>Documentation</category>
+            <category>Resources</category>
+        </item>
+
+        <!-- Community and Encrypted Communications Setup -->
+        <item>
+            <title>Encrypted Community Channels Now Active</title>
+            <link>https://storpunk.io/#join-us</link>
+            <guid
+                isPermaLink="true"
+            >https://storpunk.io/updates/2024-12-19-encrypted-communications</guid>
+            <description
+            >StorPunk community forums are now accessible through Retroshare over Tor, ensuring privacy and security for all community members and developers. Built on voluntaryist principles of voluntary association and agorist counter-economics.</description>
+            <content:encoded
+            ><![CDATA[
+                <h2>Privacy-First Community Infrastructure</h2>
+                <p>Staying true to our cypherpunk principles, StorPunk community communications operate through encrypted, decentralized channels.</p>
+
+                <h3>Retroshare Over Tor</h3>
+                <p>Our primary community platform uses Retroshare, a decentralized social sharing network that provides:</p>
+                <ul>
+                    <li>End-to-end encrypted communications</li>
+                    <li>No central servers or corporate dependencies</li>
+                    <li>Resistance to censorship and surveillance</li>
+                    <li>Anonymous participation options</li>
+                </ul>
+
+                <h3>Code Collaboration via Radicle</h3>
+                <p>For technical development, we use Radicle - a peer-to-peer, decentralized code collaboration platform:</p>
+                <ul>
+                    <li>Sovereign code repositories without central authorities</li>
+                    <li>Censorship-resistant development workflow</li>
+                    <li>Local-first with offline functionality</li>
+                    <li>Cryptographic identity and authentication</li>
+                </ul>
+
+                <h3>Getting Connected</h3>
+                <p>To join our community discussions and contribute to development:</p>
+                <ol>
+                    <li>Download and install Retroshare from retroshare.cc</li>
+                    <li>Configure it to run over Tor for enhanced privacy</li>
+                    <li>Add our Project Coordinator as a friend using the provided node ID</li>
+                    <li>Access our community forums and development channels</li>
+                </ol>
+
+                <p>This approach ensures that community members and developers can participate with complete privacy and anonymity as they choose, supporting voluntaryist principles of voluntary association without coercion or surveillance.</p>
+
+                <p><strong>Main Site:</strong> https://storpunk.io/ | <strong>Tor Hidden Service:</strong> http://roiy357xbbf53w4ens45gv4wqfxkkibpuj5tgkvsirhy6sjoprfrnwqd.onion/</p>
+
+                <p><a href="https://storpunk.io/#join-us">Get connection details</a> | <a href="https://retroshare.cc/">Download Retroshare</a></p>
+            ]]></content:encoded>
+            <pubDate>Thu, 19 Dec 2024 00:00:00 +0000</pubDate>
+            <dc:creator>StorPunk Team</dc:creator>
+            <category>Community</category>
+            <category>Privacy</category>
+            <category>Security</category>
+        </item>
+
+        <!-- Technical Architecture Overview -->
+        <item>
+            <title
+            >Technical Architecture: Temporary Storage Meets Cypherpunk Principles</title>
+            <link>https://storpunk.io/#why-storpunk</link>
+            <guid
+                isPermaLink="true"
+            >https://storpunk.io/updates/2024-12-19-technical-architecture</guid>
+            <description
+            >Deep dive into StorPunk's technical approach - how temporary data storage, dual-network architecture, and decentralized exchange create a comprehensive privacy-preserving ecosystem supporting agorist counter-economics and voluntaryist free trade.</description>
+            <content:encoded
+            ><![CDATA[
+                <h2>Technical Innovation for Digital Freedom and Economic Sovereignty</h2>
+                <p>StorPunk's architecture combines proven decentralized storage concepts with innovative approaches to temporary data lifecycle and integrated exchange capabilities, enabling agorist counter-economics and voluntaryist free trade principles.</p>
+
+                <h3>Temporary Storage Model</h3>
+                <p>Unlike permanent storage networks, StorPunk focuses on configurable, temporary data retention:</p>
+                <ul>
+                    <li><strong>User-Defined TTL:</strong> Clients specify exact data retention periods</li>
+                    <li><strong>Automatic Expiration:</strong> Data disappears completely after the specified time</li>
+                    <li><strong>Economic Efficiency:</strong> Storage costs directly tied to actual usage duration</li>
+                    <li><strong>Privacy Enhancement:</strong> Minimal persistent digital footprints</li>
+                </ul>
+
+                <h3>Dual-Network Architecture</h3>
+                <p>StorPunk clients provide unified access to both storage paradigms:</p>
+                <ul>
+                    <li><strong>StorPunk Network:</strong> Temporary, efficient storage for ephemeral data</li>
+                    <li><strong>Autonomi Integration:</strong> Permanent storage capabilities through the same interface</li>
+                    <li><strong>Seamless Operation:</strong> Users choose storage type based on data requirements</li>
+                    <li><strong>Token Flexibility:</strong> Support for both $PUNK and ANT tokens</li>
+                </ul>
+
+                <h3>Integrated Exchange Systems</h3>
+                <p>Two distinct decentralized exchange implementations:</p>
+
+                <h4>Native Currency Exchange (Launch Feature)</h4>
+                <ul>
+                    <li>Direct $PUNK token trading with fiat and cryptocurrencies</li>
+                    <li>Node-based multisig security for trade verification</li>
+                    <li>No central points of failure or intermediaries</li>
+                    <li>Privacy-preserving transaction mechanisms</li>
+                </ul>
+
+                <h4>General Trading Platform (Post-Launch)</h4>
+                <ul>
+                    <li>Decentralized marketplace for goods and services</li>
+                    <li>Censorship-resistant commerce infrastructure</li>
+                    <li>Private, anonymous transaction capabilities</li>
+                    <li>Alternative to traditional controlled marketplaces</li>
+                    <li>Support for agorist counter-economics and voluntary exchange</li>
+                    <li>Free trade without government interference or restrictions</li>
+                </ul>
+
+                <h3>Privacy Through Architecture</h3>
+                <p>StorPunk implements privacy at the protocol level rather than relying on policy promises:</p>
+                <ul>
+                    <li><strong>Client-Side Encryption:</strong> Data encrypted before transmission</li>
+                    <li><strong>Network Hops:</strong> Anonymous usage capabilities similar to Tor</li>
+                    <li><strong>Self-Custody:</strong> Users maintain complete control of keys and data</li>
+                    <li><strong>Minimal Metadata:</strong> Reduced tracking and surveillance opportunities</li>
+                </ul>
+
+                <p>This technical approach creates practical tools for digital sovereignty and economic freedom that ordinary users can access and benefit from, supporting voluntaryist principles of individual liberty and free market exchange.</p>
+
+                <p><strong>Access Documentation:</strong> https://storpunk.io/ | <strong>Tor:</strong> http://roiy357xbbf53w4ens45gv4wqfxkkibpuj5tgkvsirhy6sjoprfrnwqd.onion/</p>
+
+                <p><a href="https://storpunk.io/storpunk-whitepaper.pdf">Read full technical details</a></p>
+            ]]></content:encoded>
+            <pubDate>Thu, 19 Dec 2024 00:00:00 +0000</pubDate>
+            <dc:creator>StorPunk Team</dc:creator>
+            <category>Technology</category>
+            <category>Architecture</category>
+            <category>Privacy</category>
+        </item>
+
+    </channel>
+</rss>

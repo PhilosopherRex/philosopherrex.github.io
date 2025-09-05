@@ -1,0 +1,131 @@
+# StorPunk Website - Robots.txt
+# Decentralized Storage with a Cypherpunk Edge
+# Primary Domain: https://storpunk.io/
+# Redirect Domains: storepunk.com, storpunk.com, storpunk.net, storpunk.org (all redirect to storpunk.io)
+# Tor Hidden Service: http://roiy357xbbf53w4ens45gv4wqfxkkibpuj5tgkvsirhy6sjoprfrnwqd.onion/
+# Built on voluntaryist, agorist, and cypherpunk principles
+
+User-agent: *
+Allow: /
+
+# Priority pages for crawlers
+Allow: /#introduction
+Allow: /#dao
+Allow: /#why-storpunk
+Allow: /#roadmap
+Allow: /#faq
+Allow: /#join-us
+Allow: /#constitution
+Allow: /#whitepaper
+
+# Allow access to important documents
+Allow: /storpunk-dao-constitution.pdf
+Allow: /storpunk-whitepaper.pdf
+Allow: /site.webmanifest
+Allow: /favicon.ico
+
+# Allow common web assets
+Allow: /images/
+Allow: /css/
+Allow: /js/
+Allow: /fonts/
+
+# Disallow temporary or development files
+Disallow: /temp/
+Disallow: /tmp/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /dev/
+Disallow: /test/
+Disallow: /tests/
+Disallow: /*.log
+Disallow: /*.bak
+Disallow: /*.tmp
+
+# Disallow maintenance pages unless actively needed
+Disallow: /maintenance/
+Disallow: /coming-soon/
+
+# Block access to sensitive configuration files
+Disallow: /.env
+Disallow: /config/
+Disallow: /.htaccess
+Disallow: /web.config
+
+# Common crawlers - specific instructions
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# Social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Block aggressive or unwanted crawlers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: dotbot
+Disallow: /
+
+# Archive crawlers - allow for historical preservation
+User-agent: ia_archiver
+Allow: /
+Crawl-delay: 5
+
+# Sitemap location (when created)
+Sitemap: https://storpunk.io/sitemap.xml
+
+# Host specification
+Host: storpunk.io
+
+# Domain Strategy
+# Primary domain: storpunk.io (all content served from here)
+# Redirect domains: storepunk.com, storpunk.com, storpunk.net, storpunk.org
+# All redirect domains permanently redirect (301) to https://storpunk.io/
+# This robots.txt applies to storpunk.io - redirect domains have minimal robots.txt
+
+# Tor Hidden Service
+# Alternative access via Tor for enhanced privacy
+# http://roiy357xbbf53w4ens45gv4wqfxkkibpuj5tgkvsirhy6sjoprfrnwqd.onion/
+
+# Clean URLs preference
+# Prefer canonical URLs without trailing slashes
+# Prefer HTTPS over HTTP
+# Prefer www or non-www consistently (non-www preferred)
+# Privacy-first design supporting voluntaryist and agorist principles
+
+# Last updated: September 2, 2025

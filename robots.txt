@@ -128,4 +128,4 @@ Host: storpunk.io
 # Prefer www or non-www consistently (non-www preferred)
 # Privacy-first design supporting voluntaryist and agorist principles
 
-# Last updated: September 2, 2025
+# Last updated: 2025-09-09

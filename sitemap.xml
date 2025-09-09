@@ -12,7 +12,7 @@
     <!-- Main Website -->
     <url>
         <loc>https://storpunk.io/</loc>
-        <lastmod>2025-09-02</lastmod>
+        <lastmod>2025-09-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -20,7 +20,7 @@
     <!-- Introduction Section -->
     <url>
         <loc>https://storpunk.io/#introduction</loc>
-        <lastmod>2025-09-02</lastmod>
+        <lastmod>2025-09-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -28,7 +28,7 @@
     <!-- DAO Information -->
     <url>
         <loc>https://storpunk.io/#dao</loc>
-        <lastmod>2025-09-02</lastmod>
+        <lastmod>2025-09-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -36,7 +36,7 @@
     <!-- Why StorPunk -->
     <url>
         <loc>https://storpunk.io/#why-storpunk</loc>
-        <lastmod>2025-09-02</lastmod>
+        <lastmod>2025-09-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -44,7 +44,7 @@
     <!-- Project Roadmap -->
     <url>
         <loc>https://storpunk.io/#roadmap</loc>
-        <lastmod>2025-09-02</lastmod>
+        <lastmod>2025-09-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -52,7 +52,7 @@
     <!-- FAQ -->
     <url>
         <loc>https://storpunk.io/#faq</loc>
-        <lastmod>2025-09-02</lastmod>
+        <lastmod>2025-09-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -60,7 +60,7 @@
     <!-- Join Us -->
     <url>
         <loc>https://storpunk.io/#join-us</loc>
-        <lastmod>2025-09-02</lastmod>
+        <lastmod>2025-09-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -68,7 +68,7 @@
     <!-- Constitution -->
     <url>
         <loc>https://storpunk.io/#constitution</loc>
-        <lastmod>2025-09-02</lastmod>
+        <lastmod>2025-09-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -76,7 +76,7 @@
     <!-- Whitepaper -->
     <url>
         <loc>https://storpunk.io/#whitepaper</loc>
-        <lastmod>2025-09-02</lastmod>
+        <lastmod>2025-09-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -84,14 +84,14 @@
     <!-- PDF Documents -->
     <url>
         <loc>https://storpunk.io/storpunk-dao-constitution.pdf</loc>
-        <lastmod>2025-09-02</lastmod>
+        <lastmod>2025-09-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
 
     <url>
         <loc>https://storpunk.io/storpunk-whitepaper.pdf</loc>
-        <lastmod>2025-09-02</lastmod>
+        <lastmod>2025-09-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
@@ -99,7 +99,7 @@
     <!-- Web App Manifest -->
     <url>
         <loc>https://storpunk.io/site.webmanifest</loc>
-        <lastmod>2025-09-02</lastmod>
+        <lastmod>2025-09-09</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
@@ -107,7 +107,7 @@
     <!-- Robots.txt -->
     <url>
         <loc>https://storpunk.io/robots.txt</loc>
-        <lastmod>2025-09-02</lastmod>
+        <lastmod>2025-09-09</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.2</priority>
     </url>

@@ -60,4 +60,4 @@ For redirect domains (storepunk.com, storpunk.com, storpunk.net, storpunk.org):
 - All redirects maintain HTTPS security
 - Consistent branding across all properties
 
-Last Updated: September 2, 2025
+Last Updated: 2025-09-09

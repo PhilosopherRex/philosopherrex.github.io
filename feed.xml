@@ -16,8 +16,8 @@
             type="application/rss+xml"
         />
         <language>en-us</language>
-        <pubDate>Tue, 09 Sep 2025 13:45:02 +1000</pubDate>
-        <lastBuildDate>Tue, 09 Sep 2025 13:45:02 +1000</lastBuildDate>
+        <pubDate>Sat, 20 Sep 2025 14:37:53 +1000</pubDate>
+        <lastBuildDate>Sat, 20 Sep 2025 14:37:53 +1000</lastBuildDate>
         <generator>StorPunk Project</generator>
         <docs>https://www.rssboard.org/rss-specification</docs>
         <webMaster>contact@storpunk.org (StorPunk Team)</webMaster>
@@ -80,7 +80,7 @@
 
                 <p><a href="https://storpunk.io/#join-us">Learn how to join us</a> | <a href="https://storpunk.io/#roadmap">View our roadmap</a></p>
             ]]></content:encoded>
-            <pubDate>Tue, 09 Sep 2025 13:45:02 +1000</pubDate>
+            <pubDate>Sat, 20 Sep 2025 14:37:53 +1000</pubDate>
             <dc:creator>StorPunk Team</dc:creator>
             <category>Project Updates</category>
             <category>Launch</category>
@@ -127,7 +127,7 @@
 
                 <p><a href="https://storpunk.io/storpunk-whitepaper.pdf">Download Whitepaper</a> | <a href="https://storpunk.io/storpunk-dao-constitution.pdf">Download Constitution</a></p>
             ]]></content:encoded>
-            <pubDate>Tue, 09 Sep 2025 13:45:02 +1000</pubDate>
+            <pubDate>Sat, 20 Sep 2025 14:37:53 +1000</pubDate>
             <dc:creator>StorPunk Team</dc:creator>
             <category>Documentation</category>
             <category>Resources</category>
@@ -180,7 +180,7 @@
 
                 <p><a href="https://storpunk.io/#join-us">Get connection details</a> | <a href="https://retroshare.cc/">Download Retroshare</a></p>
             ]]></content:encoded>
-            <pubDate>Tue, 09 Sep 2025 13:45:02 +1000</pubDate>
+            <pubDate>Sat, 20 Sep 2025 14:37:53 +1000</pubDate>
             <dc:creator>StorPunk Team</dc:creator>
             <category>Community</category>
             <category>Privacy</category>
@@ -256,7 +256,7 @@
 
                 <p><a href="https://storpunk.io/storpunk-whitepaper.pdf">Read full technical details</a></p>
             ]]></content:encoded>
-            <pubDate>Tue, 09 Sep 2025 13:45:02 +1000</pubDate>
+            <pubDate>Sat, 20 Sep 2025 14:37:53 +1000</pubDate>
             <dc:creator>StorPunk Team</dc:creator>
             <category>Technology</category>
             <category>Architecture</category>

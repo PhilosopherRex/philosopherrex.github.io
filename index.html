@@ -3093,13 +3093,15 @@ h6 + .features {
         <li><a onclick="showSection('glossary')">Glossary</a></li>
     </ul>
     <div id="timebox">
+    <div class="current-time">Current Time:</div>
     <div id="current-time" class="current-time"></div>
-    <div class="deploy-date"></br>Last updated:<br>2025-09-27 03:16:56</div>
+    <div class="deploy-date">Last updated:<br><br>Fri, 03 Oct 2025,<br>00:50:01 AEST</div>
+    </div>
 </nav>
 
 <header>
     <div class="container">
-        <div class="logo">Stor<span>Punk</span></div>
+        <div class="logo">${SITE_LOGO_TEXT:-Stor<span>Punk</span>}</div>
     </div>
 </header>
 
@@ -3184,6 +3186,10 @@ h6 + .features {
             <div class="feature-card">
                 <h4>Network Search</h4>
                 <p>Network-wide indexing and search functionality for public data while maintaining privacy for private content. This collaborative system enables efficient discovery across the distributed network.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Dual Network Client</h4>
+                <p>Access both StorPunk and Autonomi networks via the StorPunk client. This will allow clients to access and store data on Autonomi (permanent data storage network) in addition to the default StorPunk network. Storing data will require the client to have Autonomi tokens.</p>
             </div>
             <div class="feature-card">
                 <h4>Social Media Communications</h4>

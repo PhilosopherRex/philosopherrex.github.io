@@ -471,7 +471,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     overflow-x: hidden;
     overflow-y: hidden; /* Hide main page scrollbar */
@@ -481,7 +481,7 @@ body {
     text-shadow: var(--text-shadow);
 }
 
-/* Container - Middle Column Structure */
+/* Container - Middle Column Structure (Desktop Default) */
 .container {
     width: 70%;
     top: 0;
@@ -500,6 +500,25 @@ body {
     z-index: 500;
     font-size: calc(0.3rem + 0.9vw);
     padding: 1vh 1vw;
+}
+
+/* Mobile body scrolling */
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto; /* Enable body scrolling on mobile */
+    }
+
+    /* Mobile container adjustments */
+    .container {
+        position: relative; /* Change from fixed to relative for mobile */
+        width: 100%; /* Full width on mobile */
+        height: auto; /* Auto height for content flow */
+        margin-left: 0; /* Remove left margin */
+        margin-right: 0; /* Remove right margin */
+        max-width: 100%; /* Full width on mobile */
+        padding: 0 1rem; /* Add horizontal padding */
+        margin-top: 2.67rem; /* Reduced space for hamburger menu */
+    }
 }
 
 /* Webkit scrollbar styling */
@@ -522,6 +541,7 @@ main {
     margin: 0;
     min-height: 100vh;
     box-sizing: border-box;
+    overflow: visible;
 }
 
 /* Section containers */
@@ -547,6 +567,11 @@ section {
    Version: 1.0 - Extracted from theme-structure.css
    File size: ~2.8k
    ============================================================================= */
+
+/* Mobile header panel - hidden by default, shown only on mobile */
+.mobile-header-panel {
+    display: none;
+}
 
 /* Left Banner Structure - Mirrors Navigation */
 .left-banner {
@@ -630,7 +655,7 @@ header {
     border-bottom: 0.0625rem solid var(--border-dark);
     box-shadow: 0 0.125rem 0.625rem var(--shadow-color);
     z-index: 998;
-    display: none; /* Hidden by default, shown only on mobile */
+    display: block; /* Displayed by default, hidden on mobile */
 }
 
 .logo {
@@ -652,28 +677,63 @@ header {
         display: none; /* Hide on mobile to save space */
     }
 
+    /* Desktop header - hide on mobile */
     header {
-        display: block;
+        display: none;
+    }
+
+    /* Mobile header panel - clean container for all mobile header elements */
+    .mobile-header-panel {
+        display: flex;
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
-        z-index: 1000;
-        padding: 0.5rem 1rem;
+        height: 4rem;
         background-color: var(--header-bg);
+        align-items: center;
+        padding: 0 1rem;
+        z-index: 1002;
+        border-bottom: 0.0625rem solid var(--border-dark);
+        box-shadow: 0 0.125rem 0.625rem var(--shadow-color);
     }
 
-    .logo {
-        font-size: 1.5rem;
-        padding: 0.5rem 0;
-        text-align: center;
+    /* Mobile title container - centers title and subtitle */
+    .mobile-title-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.1rem;
     }
 
-    /* Adjust container margin when header is shown */
+    /* Mobile header title and subtitle styles */
+    .site-title-mobile {
+        font-size: max(1.25rem, 1.5rem); /* Minimum 20px */
+        font-weight: bold;
+        text-transform: uppercase;
+        text-shadow: var(--text-shadow);
+    }
+
+    .site-title-mobile span {
+        color: var(--text-accent);
+    }
+
+    .site-subtitle-mobile {
+        font-size: max(0.75rem, 0.8rem); /* Minimum 12px */
+        font-weight: bold;
+        color: var(--text-primary);
+        text-shadow: var(--text-shadow);
+        font-variant: small-caps;
+        letter-spacing: 0.1rem;
+    }
+
+    /* Adjust container margin when mobile header is shown */
     .container {
         margin-left: 0;
         width: 100%;
-        padding-top: 4rem; /* Space for fixed header */
+        padding-top: 4rem; /* Space for fixed mobile header */
     }
 }
 
@@ -1075,12 +1135,8 @@ nav ul li a.active {
 /* Mobile navigation toggle button */
 .nav-toggle {
     display: none;
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    z-index: 1001;
-    background: var(--button-bg);
-    border: 0.0625rem solid var(--button-border);
+    background: transparent;
+    border: 0.0625rem solid var(--text-primary);
     border-radius: 0.25rem;
     padding: 0.5rem;
     cursor: pointer;
@@ -1101,8 +1157,9 @@ nav ul li a.active {
 }
 
 .nav-toggle:hover {
-    background: var(--button-hover-bg);
+    background: rgba(0, 228, 228, 0.1);
     box-shadow: 0 0 0.625rem var(--glow-color);
+    border-color: var(--text-accent);
 }
 
 /* Mobile navigation behavior */
@@ -1113,12 +1170,15 @@ nav ul li a.active {
 
     nav {
         transform: translateX(100%);
-        width: 80%;
-        max-width: 300px;
+        width: 64%;
+        max-width: 240px;
+        z-index: 1002; /* Ensure nav is above other content */
+        background-color: rgba(0, 0, 0, 0.9); /* Reduced alpha for mobile */
     }
 
     nav.active {
         transform: translateX(0);
+        z-index: 1002; /* Ensure active nav is above other content */
     }
 
     /* Hamburger animation when active */
@@ -1142,6 +1202,22 @@ nav ul li a.active {
         right: auto;
         margin-top: 2rem;
         font-size: 0.8rem;
+    }
+
+    /* Mobile navigation link improvements */
+    nav ul {
+        padding: 5rem 0 0 0;
+    }
+
+    nav ul li {
+        margin-bottom: 0; /* Remove spacing between list items on mobile */
+    }
+
+    nav ul li a {
+        font-size: max(1rem, 1.1rem); /* Minimum 16px for mobile */
+        padding: 0.75rem 1rem; /* Reduced vertical padding */
+        margin-bottom: 0.25rem; /* Reduced spacing between items */
+        line-height: 1.2; /* Tighter line height */
     }
 }
 
@@ -1390,33 +1466,38 @@ hr {
 
 /* Mobile typography adjustments */
 @media (max-width: 768px) {
+    /* Minimum font size system for mobile readability */
+    * {
+        font-size: max(0.875rem, 1em); /* Minimum 14px for all text */
+    }
+
     h1 {
-        font-size: 1.75rem;
+        font-size: max(1.5rem, 1.75rem); /* Minimum 24px */
         margin-top: 1.5rem;
     }
     h2 {
-        font-size: 1.5rem;
+        font-size: max(1.25rem, 1.5rem); /* Minimum 20px */
         margin-top: 1.25rem;
     }
     h3 {
-        font-size: 1.25rem;
+        font-size: max(1.125rem, 1.25rem); /* Minimum 18px */
         margin-top: 1rem;
     }
     h4 {
-        font-size: 1.125rem;
+        font-size: max(1rem, 1.125rem); /* Minimum 16px */
         margin-top: 0.875rem;
     }
     h5 {
-        font-size: 1rem;
+        font-size: max(0.9rem, 1rem); /* Minimum 14.4px */
         margin-top: 0.75rem;
     }
     h6 {
-        font-size: 0.9rem;
+        font-size: max(0.875rem, 0.9rem); /* Minimum 14px */
         margin-top: 0.625rem;
     }
 
     p {
-        font-size: 0.9rem;
+        font-size: max(0.875rem, 0.9rem); /* Minimum 14px */
         line-height: 1.5;
     }
 
@@ -3074,11 +3155,18 @@ h6 + .features {
         <div class="site-subtitle"></div>
     </div>
 
-<button class="nav-toggle" id="navToggle">
-    <span></span>
-    <span></span>
-    <span></span>
-</button>
+<!-- Mobile header panel - hidden by default, shown only on mobile -->
+<div class="mobile-header-panel">
+    <button class="nav-toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="mobile-title-container">
+        <div class="site-title-mobile">Stor<span>Punk</span></div>
+        <div class="site-subtitle-mobile">In Crypto We Trust</div>
+    </div>
+</div>
 
 <nav id="mainNav">
     <ul>
@@ -3095,14 +3183,13 @@ h6 + .features {
     <div id="timebox">
     <div class="current-time">Current Time:</div>
     <div id="current-time" class="current-time"></div>
-    <div class="deploy-date">Last updated:<br><br>Fri, 03 Oct 2025,<br>00:50:01 AEST</div>
+    <div class="deploy-date">Last updated:<br><br>Thu, 09 Oct 2025,<br>00:23:54 AEST</div>
     </div>
 </nav>
 
+<!-- Desktop header - hidden on mobile -->
 <header>
-    <div class="container">
-        <div class="logo">${SITE_LOGO_TEXT:-Stor<span>Punk</span>}</div>
-    </div>
+    <div class="logo">${SITE_LOGO_TEXT:-Stor<span>Punk</span>}</div>
 </header>
 
 <main class="container">
@@ -3257,13 +3344,13 @@ h6 + .features {
         <p>The $PUNK-DAO token (ERC-20) serves two primary purposes:</p>
 
         <ul><li><strong>Fundraising:</strong> Sold in tiers to raise capital for sustainable development</li></ul>
-        <ul><li><strong>Permanent Governance:</strong> Token holders vote via Snapshot.org, maintaining voice after claiming $PUNK tokens</li></ul>
+        <ul><li><strong>Development Governance:</strong> Token holders vote via Snapshot.org, maintaining voice after claiming $PUNK tokens</li></ul>
 
         </div>
         <div class="heading-section level-2">
         <h3>Tiered Sale Structure</h3>
 
-        <p>$PUNK-DAO tokens are sold at a <strong>1:1</strong> ratio with USDT. The tier in which you purchase determines your $PUNK network token multiplier at launch:</p>
+        <p>$PUNK-DAO tokens are sold at a <strong>1:1</strong> ratio with $USDT. The tier in which you purchase determines your $PUNK network token multiplier at launch:</p>
 
 
         <div class="code-block">
@@ -3280,10 +3367,10 @@ h6 + .features {
         <div class="heading-section level-2">
         <h3>Holding Mechanism</h3>
 
-        <p>The system includes multiplier incentives for token retention. At network launch:</p>
+        <p>The DAO claim contract includes a multiplier incentive for token retention. At network launch:</p>
 
-        <p>- <strong>Original purchasers</strong> who never transferred tokens receive additional <strong>2x multiplier</strong> (e.g., Tier 1 <span class="highlight highlight-multiplier">16x</span> becomes <span class="highlight highlight-multiplier">32x</span>)</p>
-        <p>- <strong>Secondary buyers</strong> receive only base tier multiplier</p>
+        <p>- <strong>Original purchasers</strong> who never transferred tokens receive an <strong>additional 2x multiplier</strong> (so, e.g., Tier 1 <span class="highlight highlight-multiplier">16x</span> becomes <span class="highlight highlight-multiplier">32x</span>, etc.)</p>
+        <p>- <strong>Secondary buyers</strong> receive only base tier multiplier. Thus members are incentivised to buy at the initial sale and hold until launch</p>
 
         <ul><li>Claiming happens on Ethereum—the contract verifies your holding history automatically</li></ul>
 
@@ -5253,12 +5340,55 @@ function createCodeRain() {
   drawRain();
 }
 
+// Mobile navigation functionality
+function initMobileNavigation() {
+  const navToggle = document.querySelector(".nav-toggle");
+  const nav = document.querySelector("nav");
+
+  if (navToggle && nav) {
+    // Toggle navigation on hamburger menu click/touch
+    navToggle.addEventListener("click", function () {
+      nav.classList.toggle("active");
+      this.classList.toggle("active");
+    });
+
+    // Close menu when clicking outside on mobile devices
+    document.addEventListener("click", function (event) {
+      const isMobile = window.innerWidth <= 768;
+      if (
+        isMobile &&
+        nav.classList.contains("active") &&
+        !nav.contains(event.target) &&
+        !navToggle.contains(event.target)
+      ) {
+        nav.classList.remove("active");
+        navToggle.classList.remove("active");
+      }
+    });
+
+    // Close menu when switching sections on mobile
+    const navLinks = document.querySelectorAll("nav ul li a");
+    navLinks.forEach((link) => {
+      link.addEventListener("click", function () {
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile && nav.classList.contains("active")) {
+          nav.classList.remove("active");
+          navToggle.classList.remove("active");
+        }
+      });
+    });
+  }
+}
+
 // Initialize everything when the page loads
 window.onload = function () {
   console.log("Page loaded, initializing components...");
 
   // Initialize code rain animation
   createCodeRain();
+
+  // Initialize mobile navigation functionality
+  initMobileNavigation();
 
   // Show the introduction section by default
   showSection("Introduction");
